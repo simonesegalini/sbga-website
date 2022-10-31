@@ -14,13 +14,12 @@ export const useMobileNavigatorStyle = (theme: Theme): Style => {
     divider: {
       backgroundColor: theme.palette.primary.contrastText,
       opacity: "0.5",
-      marginTop: 60,
+      marginTop: 24,
       marginBottom: 24,
     },
     bottomContainer: {
       width: "100%",
       height: "100%",
-      backgroundColor: "red",
       paddingTop: 16,
       paddingBottom: 16,
       display: "flex",
@@ -33,7 +32,7 @@ export const useMobileNavigatorStyle = (theme: Theme): Style => {
       justifyContent: "center",
       alignItems: "center",
       marginTop: 8,
-      marginBottom: 16,
+      marginBottom: 32,
     },
     infoContainer: {
       flex: 1,

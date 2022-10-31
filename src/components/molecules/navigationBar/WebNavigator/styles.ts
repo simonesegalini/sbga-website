@@ -19,7 +19,7 @@ export const useWebNavigatorStyle = (
       flex: 1,
       display: "flex",
       alignItems: "flex-end",
-      marginBottom: screenSize === "xl" ? 60 : 40,
+      marginBottom: screenSize === "xl" ? 60 : 32,
     },
     address: {
       fontSize: screenSize === "xl" ? "1.8em" : "1.2em",

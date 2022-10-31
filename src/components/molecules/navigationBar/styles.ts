@@ -1,44 +1,43 @@
 import { Style } from "../../../globalTypes";
-import { useDimensions } from "../../../hooks/useDimensions";
 
-export const useNavigationBarStyle = (): Style => {
-  const { window, navbarHeight } = useDimensions();
+export const useNavigationBarStyle = (open: boolean): Style => {
+  const navbarHeight = document.getElementById("navbar-header")?.offsetHeight;
 
   return {
     navbarHeaderContainer: {
       display: "flex",
-      background: "tra",
       padding: 32,
       position: "fixed",
       justifyContent: "flex-end",
-      zIndex: 5,
+      zIndex: 10000,
       width: "100vw",
-      height: navbarHeight,
+      height: "fit-content",
     },
     buttonContainer: {
       display: "flex",
       alignItems: "center",
     },
     navbar: {
-      zIndex: 2,
+      zIndex: 1002,
+      backdropFilter: "blur(2px)",
       backgroundColor: "black",
-      height: "90vh",
       width: "100vw",
       position: "fixed",
-      top: 0,
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-end",
-      alignItems: "center",
+      marginTop: open ? (navbarHeight ? navbarHeight - 32 : 0) : 0,
+      bottom: 0,
+      maxHeight: "100%",
+      justifyContent: "center",
     },
     container: {
       display: "flex",
       flexDirection: "column",
-      height: window.height - navbarHeight,
       width: "100%",
       zIndex: 10,
+      maxHeight: "100%",
     },
-    logo: { height: "100%", marginLeft: 24 },
-    mobileLogo: { height: "100%", marginLeft: 4, opacity: 0 },
+    logo: { position: "absolute", left: 32, width: 300 },
+    mobileLogo: { display: "none" },
   };
 };

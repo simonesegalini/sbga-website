@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import { useMenuItemStyle } from "./styles";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { motion } from "framer-motion";
+import CustomTypography from "../CustomTypography/customTypography";
 
 export interface MenuItemsProps {
   title: string;
@@ -20,12 +21,11 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
       <Box
         style={{
           textAlign: "center",
-          ...styles.btnContainer,
         }}
         onClick={onClick}
         key={title}
       >
-        {title}
+        <CustomTypography style={styles.typography}>{title}</CustomTypography>
       </Box>
     );
   });
@@ -36,7 +36,6 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
         style={{
           textAlign: "right",
           margin: 8,
-          ...styles.btnContainer,
         }}
         onClick={onClick}
         key={title}
@@ -46,7 +45,7 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
-          {title}
+          <CustomTypography style={styles.typography}>{title}</CustomTypography>
         </motion.div>
       </Box>
     );

@@ -1,9 +1,6 @@
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useMemo, useState } from "react";
-
-const NAVBAR_HEIGHT_WEB = 120;
-const NAVBAR_HEIGHT_MOBILE = 80;
+import { useEffect, useState } from "react";
 
 export type ScreenSize = "sm" | "md" | "lg" | "xl";
 
@@ -14,8 +11,8 @@ export interface Window {
 
 export interface Dimensions {
   window: Window;
+  isSmall: boolean;
   screenSize: ScreenSize;
-  navbarHeight: number;
 }
 
 const getWindowDimensions = (): Window => {
@@ -42,11 +39,6 @@ const useWindowDimensions = (): Window => {
   return windowDimensions;
 };
 
-const useNavbarHeight = (open: boolean): number => {
-  const window = useWindowDimensions();
-  return open ? window.height : NAVBAR_HEIGHT_WEB;
-};
-
 const useScreenSize = (): ScreenSize => {
   const theme = useTheme();
   const screenMdSize = useMediaQuery(theme.breakpoints.up("md"));
@@ -55,11 +47,10 @@ const useScreenSize = (): ScreenSize => {
   return screenXlSize ? "xl" : screenLSize ? "lg" : screenMdSize ? "md" : "sm";
 };
 
-export const useDimensions = (open?: boolean): Dimensions => {
+export const useDimensions = (): Dimensions => {
   return {
+    isSmall: useScreenSize() === "sm",
     screenSize: useScreenSize(),
     window: useWindowDimensions(),
-    navbarHeight:
-      useScreenSize() === "sm" ? NAVBAR_HEIGHT_MOBILE : NAVBAR_HEIGHT_WEB,
   };
 };

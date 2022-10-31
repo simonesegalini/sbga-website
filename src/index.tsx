@@ -9,11 +9,11 @@ import { I18nextProvider } from "react-i18next";
 import i18next from "./i18n/init";
 import { useCustomTheme } from "./themes/themes";
 import { BrowserRouter } from "react-router-dom";
-import { useLanguage } from "./hooks/useLanguage";
+import { consoleHelper } from "./utils";
+import "../src/components/atoms/LoadingSkeleton/skeleton.css";
 
 const AppComponent = () => {
-  useGlobal();
-  useLanguage();
+  useGlobal(); //** THIS HOOK MANAGES THE GLOBAL CONTEXT **//
   return (
     <I18nextProvider i18n={i18next}>
       <GlobalContextProvider>
@@ -37,7 +37,7 @@ const MainComponent = () => {
 
 function AppWithCallbackAfterRender() {
   useEffect(() => {
-    console.log("rendered main component");
+    consoleHelper("rendered main component");
   });
   return <MainComponent />;
 }

@@ -7,12 +7,12 @@ import { useNavigation } from "../../../navigation/useNavigation";
 import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useNavigationBar = () => {
-  const styles = useNavigationBarStyle();
+  const [open, setOpen] = useState<boolean>(false);
+  const styles = useNavigationBarStyle(open);
   const buttons = getNavbarButtons().filter((btn) => btn.name !== "Home");
   const location = useLocation();
-  const { screenSize } = useDimensions();
+  const { screenSize, isSmall } = useDimensions();
   const { navigate } = useNavigation();
-  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const ctr = document.getElementById("container");
@@ -22,18 +22,17 @@ export const useNavigationBar = () => {
   }, []);
 
   const logoStyle = useMemo(() => {
-    return screenSize === "sm" ? styles.mobileLogo : styles.logo;
-  }, [screenSize, styles]);
+    return isSmall ? styles.mobileLogo : styles.logo;
+  }, [isSmall, styles]);
 
   const styleBar = useMemo(() => {
     return open
       ? {
-          justifyContent: "space-between",
-          paddingBottom: 0,
+          justifyContent: "flex-end",
           backgroundColor: "black",
         }
       : { justifyContent: "flex-end", backgroundColor: "transparent" };
-  }, [open]);
+  }, [open, isSmall]);
 
   const animate = useMemo(() => {
     return open ? "opened" : "closed";

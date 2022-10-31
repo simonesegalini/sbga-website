@@ -18,8 +18,7 @@ export const useMenuItemStyle = (
   };
 
   return {
-    btnContainer: {
-      fontFamily: "HelveticaNeueBold",
+    typography: {
       fontSize: getFontSize(),
       color: theme.palette.primary.contrastText,
     },

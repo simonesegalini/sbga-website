@@ -1,0 +1,10 @@
+{
+    "intlDateTime": "{{date, intlDateTime}}",
+    "number0Digit": "{{number, intlNumber0Digit}}",
+    "number1Digit": "{{number, intlNumber1Digit}}",
+    "number2Digit": "{{number, intlNumber2Digit}}",
+    "number3Digit": "{{number, intlNumber3Digit}}",
+    "number4Digit": "{{number, intlNumber4Digit}}",
+    "number5Digit": "{{number, intlNumber5Digit}}",
+    "numberMax2Digit": "{{number, intlNumberMax2Digit}}"
+}

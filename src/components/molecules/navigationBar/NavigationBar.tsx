@@ -25,8 +25,13 @@ const NavigationBar: React.FC = () => {
 
   const NavBarHeader = () => {
     return (
-      <motion.header style={{ ...styles.navbarHeaderContainer, ...styleBar }}>
-        {open && <img src={logo} style={logoStyle} onClick={goToHome} />}
+      <motion.header
+        id="navbar-header"
+        style={{ ...styles.navbarHeaderContainer, ...styleBar }}
+      >
+        {open && (
+          <img src={logo} style={logoStyle} onClick={goToHome} alt="logo" />
+        )}
         <Box style={styles.buttonContainer}>
           <MButton
             isOpen={open}
@@ -62,7 +67,7 @@ const NavigationBar: React.FC = () => {
         variants={menuVariants}
         animate={animate}
       >
-        <Box id="container" style={styles.container}>
+        <Box component="div" id="container" style={styles.container}>
           {screenSize === "sm" ? (
             <MobileNavigator
               buttons={buttons}

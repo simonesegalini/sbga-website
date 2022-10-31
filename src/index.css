@@ -26,27 +26,3 @@ code {
   border: 2px solid white; /* should match background, can't be transparent */
   background-color: lightgray;
 }
-
-@font-face {
-  font-family: 'HelveticaNeue';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProMd.otf") format('truetype');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'HelveticaNeueLight';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProLt.otf") format('truetype');
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: 'HelveticaNeueBold';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProBd.otf") format('truetype');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'HelveticaNeueThin';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProTh.otf") format('truetype');
-  font-weight: normal;
-}
