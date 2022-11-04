@@ -16,7 +16,7 @@
   transition: all 0.2s linear;
 }
 
-.container:hover .image {
+.container:hover .containerImage {
   -webkit-filter: brightness(65%);
   -moz-filter: brightness(65%);
   -o-filter: brightness(65%);
@@ -31,13 +31,9 @@
   background-size: cover;
   background-position: center;
   object-fit: cover;
-  -webkit-filter: brightness(100%);
-  -moz-filter: brightness(100%);
-  -o-filter: brightness(100%);
-  filter: brightness(100%);
 }
 
-.imageNT {
+.containerImageNT {
   display: block;
   width: 100%;
   height: 100%;
@@ -45,17 +41,16 @@
   background-size: cover;
   background-position: center;
   object-fit: cover;
-  -webkit-filter: brightness(65%);
-  -moz-filter: brightness(65%);
-  -o-filter: brightness(65%);
-  filter: brightness(65%);
+  -webkit-filter: brightness(75%);
+  -moz-filter: brightness(75%);
+  -o-filter: brightness(75%);
+  filter: brightness(75%);
 }
 
 .overlay {
   width: 100%;
   position: absolute;
-  top: 48px;
-  padding-left: 16px;
+  top: 0;
   opacity: 0;
   transition: .5s ease;
   cursor: pointer

@@ -41,20 +41,18 @@ const App = () => {
   }, [finishedScrolling, showModel]);
 
   return (
-    <AnimatePresence exitBeforeEnter key="key">
-      {showRoutes && !error && <NavigationBar key="navbar" />}
-      {error ? (
-        <ErrorPage />
-      ) : (
-        <ScrollToTop showRoutes={showRoutes}>
-          {showRoutes ? (
-            <MainRoutes key="mainRoutes" />
-          ) : (
-            <LandingPage showModel={showModel} />
-          )}
-        </ScrollToTop>
-      )}
-      {!error && <Footer key="footer" />}
+    <AnimatePresence exitBeforeEnter>
+      <>
+        {showRoutes && !error && <NavigationBar key="navbar" />}
+        {error ? (
+          <ErrorPage />
+        ) : (
+          <ScrollToTop showRoutes={showRoutes}>
+            {showRoutes ? <MainRoutes key="mainRoutes" /> : <LandingPage />}
+          </ScrollToTop>
+        )}
+        {!error && showRoutes && <Footer key="footer" />}
+      </>
     </AnimatePresence>
   );
 };

@@ -1,5 +1,5 @@
 import useAxios from "axios-hooks";
-import { DataSchema, HomeSchema, Settings } from "../schemas";
+import { Data, DataSchema, HomeSchema, Settings } from "../schemas";
 import { useEffect, useMemo } from "react";
 import { AxiosError } from "axios";
 import { useGlobal } from "../state/global/useGlobal";
@@ -17,6 +17,15 @@ interface IUseAllDataLaoder {
 
 export const useLoadingData = () => {
   const { setIsDataLoaded } = useGlobal();
+  const [{ data, loading: loadingD, error: errorD }] = useAxios<
+    Data[],
+    boolean,
+    boolean
+  >({
+    url: makeApiUrl("/data"),
+    method: "GET",
+  });
+
   const [{ data: home, loading: loadingH, error: errorH }] = useAxios<
     HomeSchema[],
     boolean,
@@ -35,18 +44,18 @@ export const useLoadingData = () => {
   });
 
   const dataLoaded = useMemo(() => {
-    return !loadingH || !loadingS;
-  }, [loadingH, loadingS]);
+    return !loadingH || !loadingS || !loadingD;
+  }, [loadingH, loadingS, loadingD]);
 
   useEffect(() => {
-    if (!dataLoaded || !home || !settings) {
+    if (!dataLoaded || !home || !settings || !data) {
       return;
     }
-    setIsDataLoaded({ data: { home, settings } });
-  }, [dataLoaded, home, setIsDataLoaded, settings]);
+    setIsDataLoaded({ data: { data, home, settings } });
+  }, [dataLoaded, home, data, setIsDataLoaded, settings]);
 
   return {
-    error: errorH || errorS,
+    error: errorH || errorS || errorD,
   };
 };
 

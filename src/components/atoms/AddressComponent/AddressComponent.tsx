@@ -1,15 +1,19 @@
 import { Typography } from "@mui/material";
 import React, { CSSProperties } from "react";
+import { useGlobal } from "../../../state/global/useGlobal";
 
 interface AddressComponentProps {
   style?: CSSProperties;
 }
 const AddressComponent = (props: AddressComponentProps) => {
+  const { data } = useGlobal();
+  const { settings } = data;
+  const { address, cap, city, nation, vat } = settings[0];
   const { style } = props;
   return (
     <Typography style={style}>
-      Via Ambrogio Spinola
-      <br /> Building 8E <br /> 20149 Milan - Italy <br /> VAT IT 09599890960{" "}
+      {address}
+      <br /> {cap} {city} - {nation} <br /> VAT {vat}
     </Typography>
   );
 };

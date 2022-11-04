@@ -1,5 +1,7 @@
 {
   "label": {
-    "try": "prova"
+    "about": "About",
+    "portfolio": "Portfolio",
+    "team": "Team"
   }
 }

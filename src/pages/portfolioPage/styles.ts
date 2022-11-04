@@ -7,5 +7,13 @@ export const usePortfolioPageStyle = (): Style => {
       height: "100vh",
       backgroundColor: "lightgray",
     },
+    rowContainer: {
+      height: "70vh",
+      display: "flex",
+    },
+    grid: {
+      display: "flex",
+      height: "fit-content",
+    },
   };
 };

@@ -21,6 +21,7 @@ export const useMenuItemStyle = (
     typography: {
       fontSize: getFontSize(),
       color: theme.palette.primary.contrastText,
+      fontWeight: "bold",
     },
     cursor: {
       cursor: "pointer",

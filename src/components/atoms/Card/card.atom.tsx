@@ -6,44 +6,60 @@ import CustomTypography from "../CustomTypography/customTypography";
 
 const Card: React.FC<ICard> = (props) => {
   const {
+    bcg_color,
+    CustomOverlayComponent,
     styles,
     title,
     overlayTransition,
     containerStyle,
-    imgSrc,
-    variantTitle,
+    image,
+    variants,
     onCardClick,
   } = useCard(props);
 
   const OverlayComponent: React.FC = () => {
     return (
-      <div className="overlay" style={styles.overlayText}>
-        <div style={styles.overlayTitle}>
-          <div style={styles.bcgSmall}>
-            <CustomTypography
-              fontWeight="bold"
-              variant={variantTitle}
-              style={styles.title}
-            >
-              {title}
-            </CustomTypography>
+      <>
+        {CustomOverlayComponent ? (
+          <CustomOverlayComponent />
+        ) : (
+          <div className="overlay" style={styles.overlayText}>
+            <div style={styles.overlayTitle}>
+              <div style={styles.bcgSmall}>
+                <CustomTypography
+                  fontWeight="bold"
+                  variant={variants.variantTitle}
+                  style={styles.title}
+                >
+                  {title}
+                </CustomTypography>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )}
+      </>
     );
   };
 
   return (
     <div
       className={overlayTransition ? "container" : "containerNT"}
-      style={containerStyle}
+      style={{ ...styles.cardContainer, ...containerStyle }}
       onClick={onCardClick}
     >
-      <img
-        src={imgSrc}
-        alt={title}
-        className={overlayTransition ? "image" : "imageNT"}
-      />
+      <div
+        className={overlayTransition ? "containerImage" : "containerImageNT"}
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: bcg_color,
+        }}
+      >
+        <img src={image.image} alt={image.image_alt} style={styles.img} />
+      </div>
       <OverlayComponent />
     </div>
   );

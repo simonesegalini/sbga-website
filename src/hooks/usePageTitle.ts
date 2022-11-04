@@ -12,8 +12,8 @@ export const pageTitles: PageTitle = {
   [Paths.Portfolio]: "Portfolio — SBGA - Blengini Ghirardelli",
   [Paths.About]: "About — SBGA - Blengini Ghirardelli",
   [Paths.Team]: "Team — SBGA - Blengini Ghirardelli",
-  [Paths.Architecture]: "ARCHITECTURE — SBGA - Blengini Ghirardelli",
-  [Paths.Design]: '"DESIGN — SBGA - Blengini Ghirardelli"',
+  [Paths.Services]: "Services — SBGA - Blengini Ghirardelli",
+  [Paths.Design]: '"Dedign — SBGA - Blengini Ghirardelli"',
 };
 
 const useGetPath = () => {

@@ -19,14 +19,16 @@ export const useWebNavigatorStyle = (
       flex: 1,
       display: "flex",
       alignItems: "flex-end",
-      marginBottom: screenSize === "xl" ? 60 : 32,
+      marginBottom: screenSize === "xl" ? 60 : 16,
     },
     address: {
       fontSize: screenSize === "xl" ? "1.8em" : "1.2em",
       color: theme.palette.primary.contrastText,
+      fontWeight: "lighter",
     },
     socialBtnContainer: {
-      marginLeft: -8,
+      marginTop: 8,
+      marginLeft: -4,
     },
     rightContainer: {
       flex: 1,

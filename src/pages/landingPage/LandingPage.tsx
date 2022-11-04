@@ -6,23 +6,19 @@ import AnimatedPage from "../../components/templates/AnimatedPage";
 import LinearProgress from "@mui/material/LinearProgress";
 import { NUM_FRAMES } from "./hooks/useLandingPagePageDataLoader";
 
-interface ILandingPage {
-  showModel: boolean;
-}
-
-const LandingPage = (props: ILandingPage) => {
-  const { showModel } = props;
+const LandingPage = () => {
   const {
     containerRef,
     dimensions,
     images,
     scrollFinished,
+    showModel,
     styles,
     onContainerClick,
     scrollUp,
     scrollDown,
     setScrollFinished,
-  } = useLandingPageLogic(showModel);
+  } = useLandingPageLogic();
 
   const Logo = useMemo(() => {
     return (

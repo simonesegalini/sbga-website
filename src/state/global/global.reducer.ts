@@ -14,6 +14,7 @@ export const initializeState = (): GlobalState => {
     finishedScrolling: false,
     landingPageImages: [],
     data: {
+      data: [],
       home: [],
       settings: [],
     },

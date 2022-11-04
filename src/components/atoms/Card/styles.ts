@@ -1,9 +1,13 @@
 import { Style } from "../../../globalTypes";
-import { Theme } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { useDimensions } from "../../../hooks/useDimensions";
 
-export const useCardStyle = (theme: Theme, isSmall: boolean): Style => {
+export const useCardStyle = (bcg_color?: string): Style => {
+  const theme = useTheme();
+  const { isSmall } = useDimensions();
   return {
     overlayText: {
+      height: "100%",
       opacity: isSmall ? 1 : undefined,
     },
     overlayHeader: {
@@ -19,6 +23,7 @@ export const useCardStyle = (theme: Theme, isSmall: boolean): Style => {
       display: "flex",
       alignItems: "flex-end",
       overflow: "hidden",
+      padding: isSmall ? 24 : 40,
     },
     bcgSmall: {
       padding: 0,
@@ -45,6 +50,19 @@ export const useCardStyle = (theme: Theme, isSmall: boolean): Style => {
     title: {
       color: theme.palette.primary.contrastText,
       letterSpacing: "0.05em",
+    },
+    cardContainer: {
+      backgroundColor: bcg_color ?? `#${bcg_color}`,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    img: {
+      padding: bcg_color ? 40 : undefined,
+      paddingLeft: isSmall && bcg_color ? 48 : bcg_color ? 48 : undefined,
+      paddingRight: isSmall && bcg_color ? 48 : bcg_color ? 48 : undefined,
+      height: bcg_color ? (isSmall ? "80%" : "70%") : "100%",
+      width: "100%",
     },
   };
 };

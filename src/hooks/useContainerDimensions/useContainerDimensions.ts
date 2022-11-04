@@ -24,7 +24,7 @@ const useContainerDimensions = (
 
   useLayoutEffect(() => {
     set();
-  }, [set]);
+  }, []);
 
   window.addEventListener("resize", () => {
     movementTimer && clearInterval(movementTimer);

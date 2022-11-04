@@ -1,54 +1,51 @@
 import { useCallback, useMemo } from "react";
-import { useTheme } from "@mui/material/styles";
 import { ICard } from "./types";
 import { Variant } from "@mui/material/styles/createTypography";
-import { useGlobal } from "../../../state/global/useGlobal";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { useCardStyle } from "./styles";
 
+type Variants = {
+  variantTitle: Variant;
+};
+
 export const useCard = (props: ICard) => {
   const {
+    bcg_color,
     containerStyle,
     id,
-    imgSrc,
+    title,
+    image,
     year,
     featured = false,
     overlayTransition = true,
     onItemClick,
+    CustomOverlayComponent,
   } = props;
-
-  const theme = useTheme();
   const { isSmall } = useDimensions();
-  const styles = useCardStyle(theme, isSmall);
-  const { language } = useGlobal();
+
+  const styles = useCardStyle(bcg_color);
 
   const onCardClick = useCallback(() => {
     onItemClick && onItemClick(id);
   }, [id, onItemClick]);
 
-  const variantYear: Variant = useMemo(() => {
-    return isSmall ? "body1" : "h6";
-  }, [isSmall]);
-
-  const variantTitle: Variant = useMemo(() => {
-    return isSmall ? "h4" : "h3";
-  }, [isSmall]);
-
-  const title = useMemo(() => {
-    const property = "title_" + language;
-    return props[property];
-  }, [props, language]);
+  const variants: Variants = useMemo(() => {
+    return {
+      variantTitle: "h4",
+    };
+  }, []);
 
   return {
+    bcg_color,
     containerStyle,
-    imgSrc,
+    CustomOverlayComponent,
+    image,
     title,
     year,
     featured,
     overlayTransition: overlayTransition && !isSmall,
     styles,
-    variantYear,
-    variantTitle,
+    variants,
     onCardClick,
   };
 };

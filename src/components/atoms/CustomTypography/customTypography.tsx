@@ -17,7 +17,7 @@ const CustomTypography = (props: ICustomTypography) => {
       {...otherProps}
       {...props}
       fontWeight={fontWeight}
-      style={{ color: defaultColor, ...style }}
+      style={{ color: defaultColor, ...style, fontStyle: "HelveticaNeue" }}
       component={component ? component : "div"}
     />
   );

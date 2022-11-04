@@ -1,21 +1,58 @@
-import React from "react";
+import React, { useCallback } from "react";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import Box from "@mui/material/Box";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { useSocialButtonsStyle } from "./styles";
+import { useGlobal } from "../../../state/global/useGlobal";
+type AvailableSocial = "instagram" | "facebook" | "linkedin";
 
 const SocialButtons = () => {
+  const { data } = useGlobal();
+  const { settings } = data;
+  const { link_facebook, link_instagram, link_linkedin } = settings[0];
   const { screenSize } = useDimensions();
   const styles = useSocialButtonsStyle(screenSize);
 
+  const openSocial = useCallback(
+    (social: AvailableSocial) => {
+      const urlSocial = (social: AvailableSocial) => {
+        switch (social) {
+          case "facebook":
+            return link_facebook;
+          case "linkedin":
+            return link_linkedin;
+          case "instagram":
+            return link_instagram;
+          default:
+            return null;
+        }
+      };
+
+      const url = urlSocial(social);
+      if (!url) {
+        return;
+      }
+      window.open(url, "_blank", "noopener,noreferrer");
+    },
+    [link_facebook, link_instagram, link_linkedin]
+  );
+
   return (
-    <Box component="div">
-      <FacebookIcon style={{ ...styles.icon, marginRight: 8 }} />
-      <InstagramIcon style={{ ...styles.icon, marginRight: 8 }} />
-      <LinkedInIcon style={styles.icon} />
-    </Box>
+    <>
+      <FacebookIcon
+        style={{ ...styles.icon, marginRight: 8 }}
+        onClick={() => openSocial("facebook")}
+      />
+      <InstagramIcon
+        style={{ ...styles.icon, marginRight: 8 }}
+        onClick={() => openSocial("instagram")}
+      />
+      <LinkedInIcon
+        style={styles.icon}
+        onClick={() => openSocial("linkedin")}
+      />
+    </>
   );
 };
 

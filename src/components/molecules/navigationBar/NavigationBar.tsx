@@ -7,6 +7,8 @@ import MobileNavigator from "./MobileNavigator/MobileNavigator";
 import WebNavigator from "./WebNavigator/WebNavigator";
 import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import useContainerDimensions from "../../../hooks/useContainerDimensions/useContainerDimensions";
 
 const NavigationBar: React.FC = () => {
   const {
@@ -51,12 +53,23 @@ const NavigationBar: React.FC = () => {
     opened: {
       top: 0,
       opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: 0,
+      },
     },
     closed: {
       top: "-100vh",
       opacity: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0,
+      },
     },
   };
+
+  const containerRef = useRef(null);
+  const { height } = useContainerDimensions(containerRef);
 
   return (
     <>
@@ -66,6 +79,8 @@ const NavigationBar: React.FC = () => {
         initial={false}
         variants={menuVariants}
         animate={animate}
+        custom={height}
+        ref={containerRef}
       >
         <Box component="div" id="container" style={styles.container}>
           {screenSize === "sm" ? (

@@ -32,14 +32,13 @@ export const useNavigationBar = () => {
           backgroundColor: "black",
         }
       : { justifyContent: "flex-end", backgroundColor: "transparent" };
-  }, [open, isSmall]);
+  }, [open]);
 
   const animate = useMemo(() => {
     return open ? "opened" : "closed";
   }, [open]);
 
   const handleClickMenu = useCallback(() => {
-    document.body.style.overflowY = !open ? "hidden" : "visible";
     setOpen(!open);
   }, [open]);
 
