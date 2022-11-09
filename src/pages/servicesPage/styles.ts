@@ -1,5 +1,5 @@
 import { Style } from "../../globalTypes";
 
-export const usePortfolioPageStyle = (): Style => {
+export const useServicesPageStyle = (): Style => {
   return {};
 };

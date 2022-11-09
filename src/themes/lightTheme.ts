@@ -8,7 +8,7 @@ export const lightTheme: Partial<Theme> | ((outerTheme: Theme) => Theme) =
     palette: {
       primary: {
         contrastText: "#f4f0f0",
-        dark: "rgb(30, 30, 30)",
+        dark: "#2c2c2c",
         light: "#f4f0f0",
         main: PRIMARY,
       },

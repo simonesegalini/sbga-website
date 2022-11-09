@@ -1,15 +1,15 @@
 import React from "react";
 import AnimatedPage from "../../components/templates/AnimatedPage";
 import { Paths } from "../../navigation/types";
-import { usePortfolioPageLogic } from "./hooks/usePortfolioPageLogic";
+import { useServicesPageLogic } from "./hooks/useServicesPageLogic";
 import HeaderImageComponent from "../../components/atoms/HeaderImageComponent/headerImageComponent";
 import RowsTemplate from "../../components/templates/RowsTemplate/RowsTemplate";
 
-const PortfolioPage = () => {
-  const { image, rows } = usePortfolioPageLogic();
+const ServicesPage = () => {
+  const { image, rows } = useServicesPageLogic();
 
   return (
-    <AnimatedPage key={Paths.Portfolio}>
+    <AnimatedPage key={Paths.Architecture}>
       <>
         <HeaderImageComponent image={image} showLogo={false} />
         <RowsTemplate type="row" rows={rows} />
@@ -18,4 +18,4 @@ const PortfolioPage = () => {
   );
 };
 
-export default PortfolioPage;
+export default ServicesPage;

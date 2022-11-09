@@ -4,7 +4,7 @@ import { Image } from "../../../schemas";
 export interface ICard extends Record<string, any> {
   id: number;
   image: Image;
-  title: string;
+  title?: string;
   featured?: boolean;
   onItemClick?: (id: number) => void;
   overlayTransition?: boolean;

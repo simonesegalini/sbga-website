@@ -57,6 +57,13 @@ export const useCardStyle = (bcg_color?: string): Style => {
       justifyContent: "center",
       alignItems: "center",
     },
+    imageContainer: {
+      height: "100%",
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
     img: {
       padding: bcg_color ? 40 : undefined,
       paddingLeft: isSmall && bcg_color ? 48 : bcg_color ? 48 : undefined,

@@ -37,7 +37,7 @@ const MainComponent = () => {
 
 function AppWithCallbackAfterRender() {
   useEffect(() => {
-    consoleHelper("rendered main component");
+    consoleHelper("rendered main components");
   });
   return <MainComponent />;
 }

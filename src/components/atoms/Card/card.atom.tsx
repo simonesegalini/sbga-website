@@ -50,11 +50,7 @@ const Card: React.FC<ICard> = (props) => {
       <div
         className={overlayTransition ? "containerImage" : "containerImageNT"}
         style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          ...styles.imageContainer,
           backgroundColor: bcg_color,
         }}
       >
