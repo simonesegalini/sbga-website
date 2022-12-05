@@ -8,7 +8,6 @@ import AboutTeamRowItem from "../../atoms/AboutTeamRowItem/AboutTeamRowItem";
 const RowsTemplate = (props: RowsPropsType) => {
   const { type, rows } = props;
   const styles = useRowsTemplateStyle();
-  console.log("ROWS -> ", rows);
 
   const Row = (row: any, index: number) => {
     if (type === "aboutRow" || type === "teamRow") {

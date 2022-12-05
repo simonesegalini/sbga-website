@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import MainRoutes from "./navigation/MainRoutes";
 import NavigationBar from "./components/molecules/navigationBar/NavigationBar";
@@ -15,22 +15,23 @@ const App = () => {
   useLanguage(); //** THIS HOOK MANAGES THE LANGUAGE **//
   usePageTitle(); //** THIS HOOK MANAGES TABS TITLE **//
   const { error } = useAllDataLoader(); //** THIS HOOK MANAGES ALL DATA LOADING **//
-  const { finishedScrolling, isDataLoaded, hideLandingPage } = useGlobal();
+  const { isDataLoaded } = useGlobal();
 
   /* DATA */
-  const showModel = useMemo(() => {
-    const showed = localStorage.getItem("animation_view_sbga");
-    return showed !== "true";
-  }, []);
+  /*const showModel = useMemo(() => {
+    //const showed = localStorage.getItem("animation_view_sbga");
+    //return showed !== "true";
+    return false;
+  }, []);*/
 
-  const showRoutes = useMemo(() => {
+  /*  const showRoutes = useMemo(() => {
     if (showModel) {
       return isDataLoaded && finishedScrolling && hideLandingPage;
     }
     return isDataLoaded;
-  }, [showModel, isDataLoaded, finishedScrolling, hideLandingPage]);
+  }, [showModel, isDataLoaded, finishedScrolling, hideLandingPage]);*/
 
-  /* EFFECTS */
+  /*/!* EFFECTS *!/
   useEffect(() => {
     if (!showModel) {
       return;
@@ -38,7 +39,11 @@ const App = () => {
     if (finishedScrolling) {
       localStorage.setItem("animation_view_sbga", "true");
     }
-  }, [finishedScrolling, showModel]);
+  }, [finishedScrolling, showModel]);*/
+
+  const showRoutes = useMemo(() => {
+    return isDataLoaded;
+  }, [isDataLoaded]);
 
   return (
     <AnimatePresence exitBeforeEnter>

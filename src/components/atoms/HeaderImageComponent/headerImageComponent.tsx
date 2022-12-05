@@ -3,6 +3,7 @@ import ScrollHelper from "../ScrollHelper/ScrollHelper";
 import React from "react";
 import { useHeaderImageComponentStyle } from "./styles";
 import { Image } from "../../../schemas";
+import ImageWithLoader from "../Image/Image";
 
 interface IHeaderImageComponent {
   image: Image;
@@ -14,7 +15,13 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
   const styles = useHeaderImageComponentStyle();
   return (
     <div style={styles.container}>
-      <img src={image.image} alt={image.image_alt} style={styles.imgBcg} />
+      <ImageWithLoader
+        src={image.image}
+        alt={image.image_alt}
+        imgContainerStyle={styles.imgBcg}
+        x_position={image.x_position}
+        y_position={image.y_position}
+      />
       {showLogo && <img alt="logo" src={logo} style={styles.imgLogo} />}
       <ScrollHelper />
     </div>

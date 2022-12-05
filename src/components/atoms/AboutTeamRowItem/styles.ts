@@ -14,8 +14,9 @@ export const useAboutItemStyle = (): Style => {
       alignItems: "flex-end",
     },
     imageContainer: {
-      flex: 2.5,
-      height: "100%",
+      flex: isSmall ? undefined : 2.5,
+      width: isSmall ? "100%" : undefined,
+      height: isSmall ? "40vh" : "100%",
       display: "flex",
       alignItems: "flex-end",
     },

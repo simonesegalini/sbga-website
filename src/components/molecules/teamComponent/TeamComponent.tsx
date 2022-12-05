@@ -1,120 +1,59 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Grid } from "@mui/material";
-import { motion } from "framer-motion";
-import { IPeopleRow, IPerson, ITeamComponent } from "./types";
-import { useTeamComponent } from "./useTeamComponent";
+import { ITeamComponent, TeamPerson } from "./types";
+import PersonComponent from "../../atoms/Person/Person";
+import _ from "lodash";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 const TeamComponent = (props: ITeamComponent) => {
-  const {
-    chunkPersonArray,
-    initialState,
-    rowsState,
-    theme,
-    isSmall,
-    variants,
-    resetRowsState,
-    setState,
-  } = useTeamComponent(props);
+  const { team } = props;
+  const { isSmall } = useDimensions();
+  const [index, setIndexOpen] = useState<number | null>(null);
 
-  const PeopleRow = (props: IPeopleRow) => {
-    const { people, index } = props;
+  const teamData = useMemo((): TeamPerson[] => {
+    if (isSmall) {
+      return team;
+    }
 
-    const aDetailIsOpen = useMemo(() => {
-      return rowsState[index].includes(true);
-    }, [index]);
+    if (index === null) {
+      return team.map((person) => ({
+        ...person,
+        open: false,
+      }));
+    }
+    const bossToRemove = team.filter((t, i) => t.isBoss && i !== index);
+    return _.difference(team, bossToRemove).map((person, i) => ({
+      ...person,
+      open: i === 0,
+    }));
+  }, [index, isSmall, team]);
 
-    const Detail = () => {
-      return (
-        <motion.div
-          variants={variants}
-          animate={aDetailIsOpen ? "open" : "closed"}
-          style={{
-            position: "absolute",
-            flex: 1,
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: theme.palette.background.paper,
-            visibility: aDetailIsOpen ? "visible" : "hidden",
-          }}
-          onClick={resetRowsState}
-        >
-          DETTAGLIO
-        </motion.div>
-      );
-    };
+  const setCloseDetail = useCallback(() => {
+    setIndexOpen(null);
+  }, []);
 
-    const Person = (props: IPerson) => {
-      const { person, indexPerson } = props;
-      const { img_thumbnail } = person;
-
-      const openMyDetail = useMemo(() => {
-        if (aDetailIsOpen) {
-          return rowsState[index][indexPerson];
-        }
-        return false;
-      }, [indexPerson]);
-
-      const setDetail = useCallback(() => {
-        const rowState = Array(3)
-          .fill(false)
-          .map((item, i) => {
-            return indexPerson === i;
-          });
-        const newRowsState = initialState;
-        newRowsState[index] = rowState;
-        setState(newRowsState);
-      }, [indexPerson]);
-
-      if (aDetailIsOpen && !openMyDetail) {
-        return <></>;
+  const setOpenDetail = useCallback(
+    (index: number) => {
+      if (!teamData[index].isBoss) {
+        return;
       }
-
-      return (
-        <Grid
-          item
-          xs={12}
-          md={openMyDetail ? 12 : 4}
-          mt={8}
-          style={{
-            backgroundColor: "yellow",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "40vh",
-            position: "relative",
-          }}
-          onClick={!aDetailIsOpen && !isSmall ? setDetail : undefined}
-        >
-          {openMyDetail ? (
-            <Detail />
-          ) : (
-            <img
-              src={img_thumbnail.image}
-              alt={img_thumbnail.image_alt}
-              style={{ width: "50%", height: "100%" }}
-            />
-          )}
-        </Grid>
-      );
-    };
-    return (
-      <>
-        {people.map((person, index) => (
-          <Person person={person} indexPerson={index} />
-        ))}
-      </>
-    );
-  };
+      setIndexOpen(index);
+    },
+    [teamData]
+  );
 
   return (
     <div style={{ width: "100%", position: "relative" }}>
       <Grid container>
-        {Object.keys(chunkPersonArray).map((_, index) => {
-          const people = chunkPersonArray[index];
-          return <PeopleRow people={people} index={index} />;
-        })}
+        {teamData.map((person, index) => (
+          <PersonComponent
+            key={index}
+            person={person}
+            setOpenDetail={setOpenDetail}
+            setCloseDetail={setCloseDetail}
+            index={index}
+          />
+        ))}
       </Grid>
     </div>
   );

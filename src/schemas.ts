@@ -29,7 +29,8 @@ export interface Person {
   img_thumbnail: Image;
   name: string;
   role: string;
-  bio: string;
+  bio?: string;
+  isBoss?: boolean;
 }
 
 export interface HomeData {
@@ -92,4 +93,6 @@ export interface Image {
   id: number;
   image: string;
   image_alt: string;
+  x_position?: number;
+  y_position?: number;
 }

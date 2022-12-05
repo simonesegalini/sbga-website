@@ -1,9 +1,10 @@
 import { Style } from "../../globalTypes";
-import { Image, Person, TeamRow } from "../../schemas";
+import { Image, TeamRow } from "../../schemas";
+import { TeamPerson } from "../../components/molecules/teamComponent/types";
 
 export interface IUseTeamPage {
   image: Image;
   rows: TeamRow[];
-  people: Person[];
+  data: TeamPerson[];
   styles: Style;
 }

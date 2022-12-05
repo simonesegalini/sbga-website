@@ -7,13 +7,14 @@ import RowsTemplate from "../../components/templates/RowsTemplate/RowsTemplate";
 import TeamComponent from "../../components/molecules/teamComponent/TeamComponent";
 
 const TeamPage = () => {
-  const { rows, image, styles, people } = useTeamPage();
+  const { rows, image, styles, data } = useTeamPage();
+
   return (
     <AnimatedPage key={Paths.About}>
       <div style={styles.container}>
         <HeaderImageComponent image={image} showLogo={false} />
         <RowsTemplate type="teamRow" rows={rows} />
-        <TeamComponent people={people} />
+        <TeamComponent team={data} />
       </div>
     </AnimatedPage>
   );

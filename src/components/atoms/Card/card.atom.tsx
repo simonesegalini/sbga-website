@@ -3,6 +3,7 @@ import "./style.css";
 import { ICard } from "./types";
 import { useCard } from "./useCard";
 import CustomTypography from "../CustomTypography/customTypography";
+import ImageWithLoader from "../Image/Image";
 
 const Card: React.FC<ICard> = (props) => {
   const {
@@ -54,7 +55,17 @@ const Card: React.FC<ICard> = (props) => {
           backgroundColor: bcg_color,
         }}
       >
-        <img src={image.image} alt={image.image_alt} style={styles.img} />
+        {bcg_color ? (
+          <img src={image.image} alt={image.image_alt} style={styles.img} />
+        ) : (
+          <ImageWithLoader
+            src={image.image}
+            alt={image.image_alt}
+            x_position={image.x_position}
+            y_position={image.y_position}
+            imgContainerStyle={styles.img}
+          />
+        )}
       </div>
       <OverlayComponent />
     </div>

@@ -22,7 +22,6 @@ export const useHeaderImageComponentStyle = (): Style => {
     imgBcg: {
       width: "100%",
       height: "100%",
-      objectFit: "cover",
     },
     imgLogo: { position: "absolute", width: logoWidth },
   };
