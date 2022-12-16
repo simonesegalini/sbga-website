@@ -12,7 +12,8 @@ export const useAboutPageLogic = (): IUseAboutPage => {
   const { data } = useGlobal();
   const { about } = data.data[0];
   const { image_top, image_bottom, rows } = about;
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   const styles = useAboutPageStyle();
   const { navigate } = useNavigation();
 

@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { useNavigationBar } from "./useNavigationBar";
 import MButton from "../../atoms/MenuButton/MButton";
-import logo from "../../../assets/imgs/logo.png";
 import MobileNavigator from "./MobileNavigator/MobileNavigator";
 import WebNavigator from "./WebNavigator/WebNavigator";
 import { useTheme } from "@mui/material/styles";
@@ -13,7 +12,7 @@ import useContainerDimensions from "../../../hooks/useContainerDimensions/useCon
 const NavigationBar: React.FC = () => {
   const {
     buttons,
-    screenSize,
+    isSmall,
     open,
     styles,
     logoStyle,
@@ -32,7 +31,12 @@ const NavigationBar: React.FC = () => {
         style={{ ...styles.navbarHeaderContainer, ...styleBar }}
       >
         {open && (
-          <img src={logo} style={logoStyle} onClick={goToHome} alt="logo" />
+          <img
+            src={"imgs/logo.png"}
+            style={logoStyle}
+            onClick={goToHome}
+            alt="logo"
+          />
         )}
         <Box style={styles.buttonContainer}>
           <MButton
@@ -83,7 +87,7 @@ const NavigationBar: React.FC = () => {
         ref={containerRef}
       >
         <Box component="div" id="container" style={styles.container}>
-          {screenSize === "sm" ? (
+          {isSmall ? (
             <MobileNavigator
               buttons={buttons}
               handleClickRoute={handleClickRoute}

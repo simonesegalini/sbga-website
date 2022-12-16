@@ -24,7 +24,8 @@ const useScrollHelper = (props: ScrollHelperProps) => {
   const { up, down, scrollFinished, setScrollFinished } = props;
   const { isDataLoaded } = useGlobal();
   const theme = useTheme();
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   const styles = useScrollHelperStyle(theme, up, down);
   const { t } = useTranslation();
   const { isVisible } = useHideShowOnScroll(

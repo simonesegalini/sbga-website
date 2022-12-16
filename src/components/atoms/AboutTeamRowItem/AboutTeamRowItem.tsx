@@ -8,7 +8,8 @@ import { useDimensions } from "../../../hooks/useDimensions";
 const AboutTeamRowItem = (props: IAboutRowItem | ITeamRowItem) => {
   const { index, image, text } = props;
   const styles = useAboutItemStyle();
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   const LeftComponent = useMemo(() => {
     return (

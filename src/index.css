@@ -1,53 +1,56 @@
 body {
-  height: 100vh;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: 10; /* Necessary for overflow: hidden to work correctly in Safari */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
+
 * {
-  box-sizing: border-box
+    box-sizing: border-box
 }
+
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-  -webkit-appearance: none;
-  display: none;
+    width: 12px;
+    height: 12px;
+    -webkit-appearance: none;
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  border: 2px solid white; /* should match background, can't be transparent */
-  background-color: lightgray;
+    border-radius: 5px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: lightgray;
 }
 
 
 @font-face {
-  font-family: 'HelveticaNeue';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProMd.otf") format('truetype');
-  font-weight: normal;
+    font-family: 'HelveticaNeue';
+    src: local('HelveticaNeue'), url("../public/fonts/HelveticaNeueLTProMd.otf") format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-  font-family: 'HelveticaNeueLight';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProLt.otf") format('truetype');
-  font-weight: normal;
+    font-family: 'HelveticaNeueLight';
+    src: local('HelveticaNeue'), url("../public/fonts/HelveticaNeueLTProLt.otf") format('truetype');
+    font-weight: normal;
 }
 
 @font-face {
-  font-family: 'HelveticaNeueBold';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProBd.otf") format('truetype');
-  font-weight: bold;
+    font-family: 'HelveticaNeueBold';
+    src: local('HelveticaNeue'), url("../public/fonts/HelveticaNeueLTProBd.otf") format('truetype');
+    font-weight: bold;
 }
 
 @font-face {
-  font-family: 'HelveticaNeueThin';
-  src: local('HelveticaNeue'), url("./assets/fonts/HelveticaNeueLTProTh.otf") format('truetype');
-  font-weight: normal;
+    font-family: 'HelveticaNeueThin';
+    src: local('HelveticaNeue'), url("../public/fonts/HelveticaNeueLTProTh.otf") format('truetype');
+    font-weight: normal;
 }

@@ -11,7 +11,8 @@ type Variants = {
 
 const useRowItem = (props: Item) => {
   const { title, subtitle, color_bcg, img_header } = props;
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   const styles = useRowItemStyle(color_bcg);
 
   const variants = useMemo((): Variants => {

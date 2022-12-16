@@ -3,7 +3,6 @@ import { Data, DataSchema, HomeSchema, Settings } from "../schemas";
 import { useEffect, useMemo } from "react";
 import { AxiosError } from "axios";
 import { useGlobal } from "../state/global/useGlobal";
-import { useLandingPageDataLoader } from "../pages/landingPage/hooks/useLandingPagePageDataLoader";
 
 export const makeApiUrl = (url: string) => {
   return `/api/v1${url}`;
@@ -60,7 +59,7 @@ export const useLoadingData = () => {
 };
 
 export const useAllDataLoader = (): IUseAllDataLaoder => {
-  useLandingPageDataLoader(); //** THIS HOOK MANAGES LOADING LANDING PAGE IMAGES **//
+  //useLandingPageDataLoader(); //** THIS HOOK MANAGES LOADING LANDING PAGE IMAGES **//
   const { error } = useLoadingData();
   return { error };
 };

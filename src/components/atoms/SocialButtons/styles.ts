@@ -9,7 +9,7 @@ export const useSocialButtonsStyle = (screenSize: ScreenSize): Style => {
       case "lg":
         return { width: 50, height: 50 };
       case "xl":
-        return { width: 60, height: 60 };
+        return { width: 50, height: 50 };
       default:
         return { width: 40, height: 40 };
     }

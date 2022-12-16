@@ -25,7 +25,7 @@ export const useNavigationBarStyle = (open: boolean): Style => {
       position: "fixed",
       display: "flex",
       flexDirection: "column",
-      marginTop: open ? (navbarHeight ? navbarHeight - 32 : 0) : 0,
+      marginTop: open ? (navbarHeight ? navbarHeight - 48 : 0) : 0,
       bottom: 0,
       maxHeight: "100%",
       justifyContent: "center",

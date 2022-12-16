@@ -4,7 +4,8 @@ import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useCardStyle = (bcg_color?: string): Style => {
   const theme = useTheme();
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   return {
     overlayText: {
       height: "100%",

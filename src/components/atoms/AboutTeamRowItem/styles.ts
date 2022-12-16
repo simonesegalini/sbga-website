@@ -4,7 +4,9 @@ import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useAboutItemStyle = (): Style => {
   const theme = useTheme();
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
+
   return {
     container: {
       marginTop: isSmall ? 32 : undefined,
@@ -34,6 +36,7 @@ export const useAboutItemStyle = (): Style => {
       display: "flex",
       justifyContent: "center",
       width: isSmall ? undefined : "80%",
+      fontSize: "1.1rem",
     },
   };
 };

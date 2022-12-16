@@ -1,14 +1,16 @@
 import { useErrorPageStyle } from "./styles";
 import { memo, useMemo } from "react";
 import AnimatedPage from "../../components/templates/AnimatedPage";
-import logo from "../../assets/imgs/logo.png";
 import { Variant } from "@mui/material/styles/createTypography";
-import { useDimensions } from "../../hooks/useDimensions";
+import { useTranslation } from "react-i18next";
 import CustomTypography from "../../components/atoms/CustomTypography/customTypography";
+import { useDimensions } from "../../hooks/useDimensions";
 
 const ErrorPage = () => {
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   const styles = useErrorPageStyle();
+  const { t } = useTranslation();
 
   const variant = useMemo((): Variant => {
     return isSmall ? "body1" : "h6";
@@ -17,7 +19,7 @@ const ErrorPage = () => {
   const Logo = memo(() => {
     return (
       <div style={styles.logoContainer}>
-        <img src={logo} style={styles.logo} alt="logo" />
+        <img src={"imgs/logo.png"} style={styles.logo} alt="logo" />
       </div>
     );
   });
@@ -26,7 +28,7 @@ const ErrorPage = () => {
       <>
         <Logo />
         <CustomTypography variant={variant} fontWeight="light">
-          C'è stato un problema, riprovare.
+          {t("label.tryAgain")}
         </CustomTypography>
       </>
     </AnimatedPage>

@@ -5,7 +5,8 @@ import { useTheme } from "@mui/material/styles";
 
 export const useHomePageStyle = (): Style => {
   const theme = useTheme();
-  const { isSmall, screenSize } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   const fontSize = useMemo(() => {
     switch (screenSize) {
@@ -37,6 +38,7 @@ export const useHomePageStyle = (): Style => {
       fontSize: fontSize.toString(),
       cursor: "pointer",
       fontWeight: "bold",
+      lineHeight: 1.1,
     },
     divider: {
       backgroundColor: theme.palette.primary.contrastText,

@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { useLandingPageLogic } from "./hooks/useLandingPageLogic";
-import logo from "../../assets/imgs/logo.png";
 import AnimatedPage from "../../components/templates/AnimatedPage";
 import LinearProgress from "@mui/material/LinearProgress";
 
@@ -14,7 +13,7 @@ const LandingPage = () => {
           <LinearProgress style={styles.linearProgress} />
         </div>
         <div style={styles.logoLoaderContainer}>
-          <img src={logo} style={styles.logoLoader} alt="logo" />
+          <img src={"imgs/logo.png"} style={styles.logoLoader} alt="logo" />
         </div>
       </div>
     );

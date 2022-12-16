@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useHomePageLogic } from "./hooks/useHomePageLogic";
 import AnimatedPage from "../../components/templates/AnimatedPage";
 import { Paths } from "../../navigation/types";
@@ -18,7 +18,7 @@ const HomePage = () => {
     [handleNavigation]
   );
 
-  const MainComponent = () => {
+  const MainComponent = useMemo(() => {
     const getPath = (index: number) => {
       switch (index) {
         case 0:
@@ -32,7 +32,7 @@ const HomePage = () => {
       }
     };
     return (
-      <Grid container>
+      <Grid container rowSpacing={0}>
         {categories.map((homeData, index) => (
           <Grid
             key={index}
@@ -52,7 +52,7 @@ const HomePage = () => {
         ))}
       </Grid>
     );
-  };
+  }, [categories, onNavigateElementClick, styles.gridItem]);
 
   const BottomComponent = () => {
     return (
@@ -80,7 +80,13 @@ const HomePage = () => {
         >
           {t("label.team")}
         </CustomTypography>
-        <CustomTypography style={styles.text}>Contact</CustomTypography>
+        <CustomTypography
+          style={styles.text}
+          onClick={() => onNavigateElementClick(Paths.Contact)}
+        >
+          {" "}
+          {t("label.contact")}
+        </CustomTypography>
       </div>
     );
   };
@@ -89,7 +95,7 @@ const HomePage = () => {
     <AnimatedPage key={Paths.Home}>
       <>
         <HeaderImageComponent image={img_thumbnail} />
-        <MainComponent />
+        {MainComponent}
         <BottomComponent />
         <Divider style={styles.divider} />
       </>

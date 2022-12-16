@@ -6,6 +6,7 @@ export enum Buttons {
   Portfolio = "Portfolio",
   About = "About",
   Team = "Team",
+  Contact = "Contact",
 }
 
 export interface NavButton {
@@ -29,6 +30,10 @@ export const navButtons: NavButton[] = [
   {
     name: Buttons.Team,
     path: Paths.Team,
+  },
+  {
+    name: Buttons.Contact,
+    path: Paths.Contact,
   },
 ];
 

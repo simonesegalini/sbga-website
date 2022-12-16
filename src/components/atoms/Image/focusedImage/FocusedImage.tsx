@@ -15,7 +15,15 @@ interface FocusedImageProps {
 }
 
 const FocusedImageComponent = (props: FocusedImageProps) => {
-  const { x = initiValue, y = initiValue, style, alt, onLoadImage, src, ...otherProps } = props;
+  const {
+    x = initiValue,
+    y = initiValue,
+    style,
+    alt,
+    onLoadImage,
+    src,
+    ...otherProps
+  } = props;
 
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -30,7 +38,16 @@ const FocusedImageComponent = (props: FocusedImageProps) => {
     }
   }, [x, y]);
 
-  return <img {...otherProps} src={src} ref={imageRef} style={style} onLoad={onLoadImage} alt={alt} />;
+  return (
+    <img
+      {...otherProps}
+      src={src}
+      ref={imageRef}
+      style={style}
+      onLoad={onLoadImage}
+      alt={alt}
+    />
+  );
 };
 
 export default FocusedImageComponent;

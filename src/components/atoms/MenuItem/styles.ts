@@ -6,6 +6,8 @@ export const useMenuItemStyle = (
   theme: Theme,
   screenSize: ScreenSize
 ): Style => {
+  const isSmall = screenSize === "sm";
+
   const getFontSize = () => {
     switch (screenSize) {
       case "lg":
@@ -22,6 +24,7 @@ export const useMenuItemStyle = (
       fontSize: getFontSize(),
       color: theme.palette.primary.contrastText,
       fontWeight: "bold",
+      lineHeight: isSmall ? 1.1 : 1.3,
     },
     cursor: {
       cursor: "pointer",

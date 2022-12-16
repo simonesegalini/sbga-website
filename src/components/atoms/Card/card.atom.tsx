@@ -61,8 +61,6 @@ const Card: React.FC<ICard> = (props) => {
           <ImageWithLoader
             src={image.image}
             alt={image.image_alt}
-            x_position={image.x_position}
-            y_position={image.y_position}
             imgContainerStyle={styles.img}
           />
         )}

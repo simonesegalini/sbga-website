@@ -1,61 +1,28 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React from "react";
 import { Grid } from "@mui/material";
-import { ITeamComponent, TeamPerson } from "./types";
+import { ITeamComponent } from "./types";
 import PersonComponent from "../../atoms/Person/Person";
-import _ from "lodash";
-import { useDimensions } from "../../../hooks/useDimensions";
+import Box from "@mui/material/Box";
+import useTeamComponent from "./useTeamComponent";
 
 const TeamComponent = (props: ITeamComponent) => {
-  const { team } = props;
-  const { isSmall } = useDimensions();
-  const [index, setIndexOpen] = useState<number | null>(null);
-
-  const teamData = useMemo((): TeamPerson[] => {
-    if (isSmall) {
-      return team;
-    }
-
-    if (index === null) {
-      return team.map((person) => ({
-        ...person,
-        open: false,
-      }));
-    }
-    const bossToRemove = team.filter((t, i) => t.isBoss && i !== index);
-    return _.difference(team, bossToRemove).map((person, i) => ({
-      ...person,
-      open: i === 0,
-    }));
-  }, [index, isSmall, team]);
-
-  const setCloseDetail = useCallback(() => {
-    setIndexOpen(null);
-  }, []);
-
-  const setOpenDetail = useCallback(
-    (index: number) => {
-      if (!teamData[index].isBoss) {
-        return;
-      }
-      setIndexOpen(index);
-    },
-    [teamData]
-  );
+  const { teamData, setOpenDetail, setCloseDetail } = useTeamComponent(props);
 
   return (
-    <div style={{ width: "100%", position: "relative" }}>
-      <Grid container>
+    <Box component="div" p={8} style={{ width: "100%", position: "relative" }}>
+      <Grid container spacing={3} rowSpacing={8}>
         {teamData.map((person, index) => (
-          <PersonComponent
-            key={index}
-            person={person}
-            setOpenDetail={setOpenDetail}
-            setCloseDetail={setCloseDetail}
-            index={index}
-          />
+          <React.Fragment key={index}>
+            <PersonComponent
+              person={person}
+              setOpenDetail={setOpenDetail}
+              setCloseDetail={setCloseDetail}
+              index={index}
+            />
+          </React.Fragment>
         ))}
       </Grid>
-    </div>
+    </Box>
   );
 };
 

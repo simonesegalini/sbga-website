@@ -2,12 +2,12 @@ import * as React from "react";
 import MenuItem from "../../../atoms/MenuItem/MenuItem";
 import { Divider } from "@mui/material";
 import Box from "@mui/material/Box";
-import { NavButton } from "../../../../config/config";
+import { Buttons, NavButton } from "../../../../config/config";
 import { useMobileNavigatorStyle } from "./styles";
 import { useTheme } from "@mui/material/styles";
 import SocialButtons from "../../../atoms/SocialButtons/SocialButtons";
 import AddressComponent from "../../../atoms/AddressComponent/AddressComponent";
-import logo from "../../../../assets/imgs/logo.png";
+import { Paths } from "../../../../navigation/types";
 
 interface MobileNavigatorProps {
   buttons: NavButton[];
@@ -18,6 +18,13 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
   const { buttons, handleClickRoute } = props;
   const theme = useTheme();
   const styles = useMobileNavigatorStyle(theme);
+
+  const onLogoClick = () => {
+    handleClickRoute({
+      name: Buttons.Home,
+      path: Paths.Home,
+    });
+  };
 
   return (
     <Box style={styles.container}>
@@ -41,7 +48,12 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
             <AddressComponent style={styles.address} />
           </Box>
           <Box style={styles.logoContainer}>
-            <img src={logo} style={styles.logo} />
+            <img
+              src={"imgs/logo.png"}
+              style={styles.logo}
+              onClick={onLogoClick}
+              alt="logo"
+            />
           </Box>
         </Box>
       </Box>

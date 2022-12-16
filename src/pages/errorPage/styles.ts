@@ -2,7 +2,8 @@ import { Style } from "../../globalTypes";
 import { useDimensions } from "../../hooks/useDimensions";
 
 export const useErrorPageStyle = (): Style => {
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   return {
     container: {

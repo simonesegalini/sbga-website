@@ -4,7 +4,9 @@ import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useFooterStyle = (): Style => {
   const theme = useTheme();
-  const { screenSize, isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
+
   return {
     container: {
       flex: 1,
@@ -29,7 +31,7 @@ export const useFooterStyle = (): Style => {
       justifyContent: isSmall ? "center" : undefined,
     },
     address: {
-      fontSize: screenSize === "xl" ? "1.8em" : "1.2em",
+      fontSize: "1.2em",
       color: theme.palette.primary.contrastText,
       fontWeight: "lighter",
       textAlign: isSmall ? "center" : undefined,

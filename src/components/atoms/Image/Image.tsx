@@ -12,12 +12,21 @@ interface IImage {
 }
 
 const ImageWithLoader = (props: IImage) => {
-  const { src, alt, x_position = 0, y_position = 0, imgContainerStyle } = props;
+  const {
+    src,
+    alt,
+    x_position = 0.000000000000001,
+    y_position = 0.00000000000001,
+    imgContainerStyle,
+  } = props;
   const [loading, setLoading] = useState(true);
 
   const onLoadImage = useCallback(() => {
+    if (!loading) {
+      return;
+    }
     setLoading(false);
-  }, []);
+  }, [loading]);
 
   const Image = useMemo(() => {
     return (

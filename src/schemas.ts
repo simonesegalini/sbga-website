@@ -1,11 +1,21 @@
+export enum Types {
+  "architectures" = "architectures",
+  "services" = "services",
+  "design" = "design",
+}
+
 export interface Item {
   id: number;
+  date: string;
   title: string;
   color_bcg?: string;
   img_header: Image;
   images: Image[];
   content: string;
   subtitle: string;
+  status: string;
+  client: string;
+  type: Types;
 }
 
 export interface Row {
@@ -28,6 +38,7 @@ export interface TeamRow {
 export interface Person {
   img_thumbnail: Image;
   name: string;
+  surname: string;
   role: string;
   bio?: string;
   isBoss?: boolean;
@@ -44,6 +55,20 @@ export interface HomeSchema extends Record<string, any> {
   categories: Array<HomeData>;
 }
 
+export enum MailTypes {
+  general_enquiry = "general_enquiry",
+  tendering_enquiry = "tendering_enquiry",
+  press_contact = "press_contact",
+  job_enquiry = "job_enquiry",
+}
+
+export type MailType = `${MailTypes}`;
+
+export interface Mail {
+  title: MailType;
+  description: string;
+}
+
 export interface Settings {
   id: number;
   logo: Image;
@@ -52,22 +77,22 @@ export interface Settings {
   city: string;
   nation: string;
   vat: string;
-  mail_types: string[];
+  mail_types: Mail[];
   link_facebook: string;
   link_instagram: string;
   link_linkedin: string;
 }
 
 export interface Data {
-  architectures: {
+  [Types.architectures]: {
     image: Image;
     rows: Row[];
   };
-  services: {
+  [Types.services]: {
     image: Image;
     rows: Row[];
   };
-  design: {
+  [Types.design]: {
     image: Image;
     rows: Row[];
   };

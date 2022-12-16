@@ -66,10 +66,8 @@ function debounce(func: Function, debounceTime: number) {
   };
 }
 
-function assign(target: any, ...sources: FocusedImageOptions[]) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  sources.forEach((source) =>
+function assign(target: any, ...sources: any) {
+  sources.forEach((source: { [x: string]: any }) =>
     Object.keys(source).forEach((key) => (target[key] = source[key]))
   );
   return target;
@@ -180,7 +178,7 @@ export class FocusedImage {
     // @ts-ignore
     this.debounceApplyShift = debounce(
       this.applyShift,
-      this.options.debounceTime
+      this.options.debounceTime ? this.options.debounceTime : 0
     );
 
     // Initialize focus

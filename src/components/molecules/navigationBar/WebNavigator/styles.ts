@@ -22,7 +22,7 @@ export const useWebNavigatorStyle = (
       marginBottom: screenSize === "xl" ? 60 : 16,
     },
     address: {
-      fontSize: screenSize === "xl" ? "1.8em" : "1.2em",
+      fontSize: "1.2em",
       color: theme.palette.primary.contrastText,
       fontWeight: "lighter",
     },

@@ -4,7 +4,9 @@ import { useDimensions } from "../../hooks/useDimensions";
 
 export const useAboutPageStyle = (): Style => {
   const theme = useTheme();
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
+
   return {
     container: {
       backgroundColor: theme.palette.background.paper,

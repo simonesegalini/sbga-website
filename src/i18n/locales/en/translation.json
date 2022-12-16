@@ -1,5 +1,22 @@
 {
-    "label": {
-      "try": "try"
-    }
+  "label": {
+    "about": "About",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "contact": "Contact",
+    "send": "Send",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "writeMessage": "Write here your message...",
+    "nameRequired": "Name is required",
+    "emailRequired": "Email is required",
+    "emailValid": "Enter a valid email",
+    "messageRequired": "Message is required",
+    "retry": "Retry",
+    "AnError": "An error has occurred, please try again.",
+    "successSendMail": "Mail sent successfully.",
+    "thankYou": "Thank You",
+    "tryAgain": "There was a problem, please try again."
+  }
 }

@@ -16,12 +16,12 @@ export const useCard = (props: ICard) => {
     title,
     image,
     year,
-    featured = false,
     overlayTransition = true,
     onItemClick,
     CustomOverlayComponent,
   } = props;
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   const styles = useCardStyle(bcg_color);
 
@@ -42,7 +42,6 @@ export const useCard = (props: ICard) => {
     image,
     title,
     year,
-    featured,
     overlayTransition: overlayTransition && !isSmall,
     styles,
     variants,

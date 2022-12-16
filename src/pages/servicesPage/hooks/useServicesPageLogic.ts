@@ -1,11 +1,11 @@
 import { IUseServicesPage } from "../types";
 import { useGlobal } from "../../../state/global/useGlobal";
 import { useServicesPageStyle } from "../styles";
+import { Types } from "../../../schemas";
 
 export const useServicesPageLogic = (): IUseServicesPage => {
   const { data } = useGlobal();
-  const { services } = data.data[0];
-  const { image, rows } = services;
+  const { image, rows } = data.data[0][Types.services];
   const styles = useServicesPageStyle();
 
   return {

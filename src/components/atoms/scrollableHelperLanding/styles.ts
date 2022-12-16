@@ -7,7 +7,8 @@ export const useScrollHelperStyle = (
   up = true,
   down = true
 ): Style => {
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   return {
     lineContainer: {

@@ -2,7 +2,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 
-export type ScreenSize = "sm" | "md" | "lg" | "xl";
+export type ScreenSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 export interface Window {
   width: number;
@@ -11,7 +11,6 @@ export interface Window {
 
 export interface Dimensions {
   window: Window;
-  isSmall: boolean;
   screenSize: ScreenSize;
 }
 
@@ -41,15 +40,23 @@ const useWindowDimensions = (): Window => {
 
 const useScreenSize = (): ScreenSize => {
   const theme = useTheme();
+  const screenSmSize = useMediaQuery(theme.breakpoints.up("sm"));
   const screenMdSize = useMediaQuery(theme.breakpoints.up("md"));
   const screenLSize = useMediaQuery(theme.breakpoints.up("lg"));
   const screenXlSize = useMediaQuery(theme.breakpoints.up("xl"));
-  return screenXlSize ? "xl" : screenLSize ? "lg" : screenMdSize ? "md" : "sm";
+  return screenXlSize
+    ? "xl"
+    : screenLSize
+    ? "lg"
+    : screenMdSize
+    ? "md"
+    : screenSmSize
+    ? "sm"
+    : "xs";
 };
 
 export const useDimensions = (): Dimensions => {
   return {
-    isSmall: useScreenSize() === "sm",
     screenSize: useScreenSize(),
     window: useWindowDimensions(),
   };

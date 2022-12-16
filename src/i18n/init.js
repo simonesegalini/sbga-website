@@ -24,8 +24,8 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    lng: "it",
-    fallbackLng: "it",
+    lng: "en",
+    fallbackLng: "en",
     returnEmptyString: false,
     debug: true,
     resources: resources,
@@ -44,7 +44,7 @@ i18n
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
-              }).format(value),
+              }).format(value)
             );
         }
         if (format === "intlDate") {

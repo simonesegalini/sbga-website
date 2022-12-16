@@ -2,7 +2,8 @@ import { Style } from "../../../globalTypes";
 import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useRowItemStyle = (color_bcg: string | undefined): Style => {
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   return {
     containerGrid: {
       height: "70vh",

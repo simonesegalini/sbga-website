@@ -3,7 +3,8 @@ import { Theme } from "@mui/material";
 import { useDimensions } from "../../hooks/useDimensions";
 
 export const useLandingPageStyle = (theme: Theme): Style => {
-  const { isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   return {
     container: {

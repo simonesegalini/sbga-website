@@ -9,9 +9,10 @@ import { useDimensions } from "../../../hooks/useDimensions";
 export const useNavigationBar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const styles = useNavigationBarStyle(open);
-  const buttons = getNavbarButtons().filter((btn) => btn.name !== "Home");
+
   const location = useLocation();
-  const { screenSize, isSmall } = useDimensions();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
   const { navigate } = useNavigation();
 
   useEffect(() => {
@@ -19,6 +20,10 @@ export const useNavigationBar = () => {
     if (ctr && ctr.parentElement) {
       ctr.parentElement.style.height = "100%";
     }
+  }, []);
+
+  const buttons = useMemo(() => {
+    return getNavbarButtons().filter((btn) => btn.name !== "Home");
   }, []);
 
   const logoStyle = useMemo(() => {
@@ -59,6 +64,7 @@ export const useNavigationBar = () => {
 
   return {
     buttons,
+    isSmall,
     screenSize,
     open,
     styles,

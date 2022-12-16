@@ -15,12 +15,14 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
   const theme = useTheme();
   const { screenSize } = useDimensions();
   const styles = useMenuItemStyle(theme, screenSize);
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   const MobileButton = memo(() => {
     return (
       <Box
         style={{
           textAlign: "center",
+          cursor: "pointer",
         }}
         onClick={onClick}
         key={title}
@@ -51,7 +53,7 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
     );
   });
 
-  return screenSize === "sm" ? <MobileButton /> : <Button />;
+  return isSmall ? <MobileButton /> : <Button />;
 };
 
 export default MenuItem;
