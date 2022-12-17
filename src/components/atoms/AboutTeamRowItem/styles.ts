@@ -9,7 +9,7 @@ export const useAboutItemStyle = (): Style => {
 
   return {
     container: {
-      marginTop: isSmall ? 32 : undefined,
+      marginTop: 32,
       height: isSmall ? "fit-content" : "70vh",
       display: "flex",
       flexDirection: isSmall ? "column" : undefined,
@@ -35,8 +35,8 @@ export const useAboutItemStyle = (): Style => {
       color: theme.palette.primary.dark,
       display: "flex",
       justifyContent: "center",
-      width: isSmall ? undefined : "80%",
-      fontSize: "1.1rem",
+      width: isSmall ? undefined : "60%",
+      fontSize: "1rem",
     },
   };
 };

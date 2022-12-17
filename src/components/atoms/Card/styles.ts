@@ -71,6 +71,7 @@ export const useCardStyle = (bcg_color?: string): Style => {
       paddingRight: isSmall && bcg_color ? 48 : bcg_color ? 48 : undefined,
       height: bcg_color ? (isSmall ? "80%" : "70%") : "100%",
       width: "100%",
+      objectFit: "cover"
     },
   };
 };

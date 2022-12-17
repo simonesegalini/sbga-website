@@ -24,7 +24,7 @@ export const useWebNavigatorStyle = (
     address: {
       fontSize: "1.2em",
       color: theme.palette.primary.contrastText,
-      fontWeight: "lighter",
+      //fontWeight: "lighter",
     },
     socialBtnContainer: {
       marginTop: 8,
