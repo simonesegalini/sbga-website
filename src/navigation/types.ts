@@ -3,6 +3,7 @@ export enum Paths {
   Architecture = "/architecture",
   ArchitectureDetail = "/architecture/:id",
   Portfolio = "/portfolio",
+  PortfolioDetail = "/portfolio/:id",
   About = "/about",
   Team = "/team",
   Design = "/design",

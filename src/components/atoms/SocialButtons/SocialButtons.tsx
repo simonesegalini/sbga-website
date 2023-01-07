@@ -5,12 +5,13 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { useSocialButtonsStyle } from "./styles";
 import { useGlobal } from "../../../state/global/useGlobal";
+
 type AvailableSocial = "instagram" | "facebook" | "linkedin";
 
 const SocialButtons = () => {
   const { data } = useGlobal();
-  const { settings } = data;
-  const { link_facebook, link_instagram, link_linkedin } = settings[0];
+  const { settings } = data!;
+  const { link_facebook, link_instagram, link_linkedin } = settings;
   const { screenSize } = useDimensions();
   const styles = useSocialButtonsStyle(screenSize);
 

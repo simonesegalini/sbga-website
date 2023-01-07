@@ -25,7 +25,7 @@ export const useDetailPageStyle = (): Style => {
       marginTop: 24,
       color: theme.palette.primary.dark,
       lineHeight: 1.1,
-      fontSize: "1.1rem",
+      fontSize: isSmall ? "0.8rem" : "1rem",
     },
     img: {
       height: isSmall ? "40vh" : "60vh",

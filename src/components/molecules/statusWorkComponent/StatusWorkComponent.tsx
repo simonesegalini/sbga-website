@@ -15,9 +15,15 @@ const StatusWorkComponent = (props: IStatusWorkComoponent) => {
   const Line = useCallback(
     (title: string, value: string) => {
       return (
-        <CustomTypography style={styles.txt} fontWeight={"bold"}>
-          {title} {value}
-        </CustomTypography>
+        <>
+          {value ? (
+            <CustomTypography style={styles.txt} fontWeight={"bold"}>
+              {title} {value}
+            </CustomTypography>
+          ) : (
+            <></>
+          )}
+        </>
       );
     },
     [styles.txt]

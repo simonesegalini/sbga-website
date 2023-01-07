@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const host = "localhost";
-const port = "3000";
+const host = "93.42.250.155";
+const port = "8000";
 
 module.exports = (app) => {
   app.use(

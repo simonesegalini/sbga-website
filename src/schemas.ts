@@ -2,13 +2,14 @@ export enum Types {
   "architectures" = "architectures",
   "services" = "services",
   "design" = "design",
+  "portfolio" = "portfolio",
 }
 
 export interface Item {
   id: number;
   date: string;
   title: string;
-  color_bcg?: string;
+  background_color?: string;
   img_header: Image;
   images: Image[];
   content: string;
@@ -16,10 +17,12 @@ export interface Item {
   status: string;
   client: string;
   type: Types;
+  types: Types[];
 }
 
 export interface Row {
   id: number;
+  boxed: boolean;
   items: Item[];
 }
 
@@ -36,7 +39,7 @@ export interface TeamRow {
 }
 
 export interface Person {
-  img_thumbnail: Image;
+  image_thumbnail: Image;
   name: string;
   surname: string;
   role: string;
@@ -96,6 +99,10 @@ export interface Data {
     image: Image;
     rows: Row[];
   };
+  [Types.portfolio]: {
+    image: Image;
+    rows: Row[];
+  };
   about: {
     image_top: Image;
     image_bottom: Image;
@@ -106,13 +113,54 @@ export interface Data {
     rows: TeamRow[];
     data: Person[];
   };
+  home: HomeSchema;
+  settings: Settings;
 }
 
-export interface DataSchema {
-  data: Data[];
-  home: HomeSchema[];
-  settings: Settings[];
-}
+export type DataSchema = {
+  data: [
+    {
+      [Types.architectures]: {
+        image: Image;
+        rows: Row[];
+      };
+    },
+    {
+      [Types.design]: {
+        image: Image;
+        rows: Row[];
+      };
+    },
+    {
+      [Types.services]: {
+        image: Image;
+        rows: Row[];
+      };
+    },
+    {
+      [Types.portfolio]: {
+        image: Image;
+        rows: Row[];
+      };
+    },
+    {
+      about: {
+        image_top: Image;
+        image_bottom: Image;
+        rows: AboutRow[];
+      };
+    },
+    {
+      team: {
+        image: Image;
+        rows: TeamRow[];
+        data: Person[];
+      };
+    },
+    { home: HomeSchema },
+    { settings: Settings }
+  ];
+};
 
 export interface Image {
   id: number;

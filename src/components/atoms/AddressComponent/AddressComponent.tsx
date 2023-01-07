@@ -8,8 +8,8 @@ interface AddressComponentProps {
 
 const AddressComponent = (props: AddressComponentProps) => {
   const { data } = useGlobal();
-  const { settings } = data;
-  const { address, cap, city, nation, vat } = settings[0];
+  const { settings } = data!;
+  const { address, cap, city, nation, vat } = settings;
   const { style } = props;
   return (
     <CustomTypography style={style}>

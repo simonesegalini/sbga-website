@@ -1,60 +1,93 @@
 import useAxios from "axios-hooks";
-import { Data, DataSchema, HomeSchema, Settings } from "../schemas";
+import { Data, DataSchema, Types } from "../schemas";
 import { useEffect, useMemo } from "react";
 import { AxiosError } from "axios";
 import { useGlobal } from "../state/global/useGlobal";
 
 export const makeApiUrl = (url: string) => {
-  return `/api/v1${url}`;
+  return `/api/v1/rest${url}`;
 };
 
 interface IUseAllDataLaoder {
-  data?: DataSchema;
+  data?: Data;
   loaded?: boolean;
   error?: AxiosError<boolean, boolean> | null;
 }
 
+const fromDataSchemaToData = (dataSchema: DataSchema): Data => {
+  const data = dataSchema.data;
+  return {
+    [Types.architectures]: {
+      image: data[0][Types.architectures].image,
+      rows: data[0][Types.architectures].rows.map((row) => ({
+        ...row,
+        items: row.items.map((r) => ({
+          ...r,
+          type: Types.architectures,
+        })),
+      })),
+    },
+    [Types.design]: {
+      image: data[1][Types.design].image,
+      rows: data[1][Types.design].rows.map((row) => ({
+        ...row,
+        items: row.items.map((r) => ({
+          ...r,
+          type: Types.design,
+        })),
+      })),
+    },
+    [Types.services]: {
+      image: data[2][Types.services].image,
+      rows: data[2][Types.services].rows.map((row) => ({
+        ...row,
+        items: row.items.map((r) => ({
+          ...r,
+          type: Types.services,
+        })),
+      })),
+    },
+    [Types.portfolio]: {
+      image: data[3][Types.portfolio].image,
+      rows: data[3][Types.portfolio].rows.map((row) => ({
+        ...row,
+        items: row.items.map((r) => ({
+          ...r,
+          type: Types.portfolio,
+        })),
+      })),
+    },
+    about: data[4].about,
+    team: data[5].team,
+    home: data[6].home,
+    settings: data[7].settings,
+  };
+};
+
 export const useLoadingData = () => {
   const { setIsDataLoaded } = useGlobal();
   const [{ data, loading: loadingD, error: errorD }] = useAxios<
-    Data[],
+    DataSchema,
     boolean,
     boolean
   >({
-    url: makeApiUrl("/data"),
-    method: "GET",
-  });
-
-  const [{ data: home, loading: loadingH, error: errorH }] = useAxios<
-    HomeSchema[],
-    boolean,
-    boolean
-  >({
-    url: makeApiUrl("/home"),
-    method: "GET",
-  });
-  const [{ data: settings, loading: loadingS, error: errorS }] = useAxios<
-    Settings[],
-    boolean,
-    boolean
-  >({
-    url: makeApiUrl("/settings"),
+    url: makeApiUrl(""),
     method: "GET",
   });
 
   const dataLoaded = useMemo(() => {
-    return !loadingH || !loadingS || !loadingD;
-  }, [loadingH, loadingS, loadingD]);
+    return !loadingD;
+  }, [loadingD]);
 
   useEffect(() => {
-    if (!dataLoaded || !home || !settings || !data) {
+    if (!dataLoaded || !data) {
       return;
     }
-    setIsDataLoaded({ data: { data, home, settings } });
-  }, [dataLoaded, home, data, setIsDataLoaded, settings]);
+    setIsDataLoaded({ data: fromDataSchemaToData(data) });
+  }, [dataLoaded, data, setIsDataLoaded]);
 
   return {
-    error: errorH || errorS || errorD,
+    error: errorD,
   };
 };
 

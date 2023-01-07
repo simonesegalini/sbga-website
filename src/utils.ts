@@ -1,4 +1,4 @@
-import { MailType, MailTypes, Types } from "./schemas";
+import { MailTypes, Types } from "./schemas";
 import { Paths } from "./navigation/types";
 
 export const consoleHelper = (message?: any, ...optionalParams: any[]) => {
@@ -32,6 +32,8 @@ export const getBasePathFromType = (type: Types) => {
       return Paths.Design;
     case Types.services:
       return Paths.Services;
+    case Types.portfolio:
+      return Paths.Portfolio;
     default:
       return Paths.Home;
   }
@@ -43,22 +45,49 @@ export const getTypeFromBasePath = (path: Paths) => {
       return Types.architectures;
     case Paths.DesignDetail:
       return Types.design;
-    case Paths.Services:
+    case Paths.ServicesDetail:
       return Types.services;
+    case Paths.PortfolioDetail:
+      return Types.portfolio;
     default:
       return;
   }
 };
 
-export const fromEmailTypeToEmailName = (type: MailType) => {
+export const fromEmailNameToEmailRoute = (type: any) => {
   switch (type) {
-    case MailTypes.general_enquiry:
-      return MailTypes.general_enquiry.replace("_", " ");
-    case MailTypes.job_enquiry:
-      return MailTypes.job_enquiry.replace("_", " ");
-    case MailTypes.press_contact:
-      return MailTypes.press_contact.replace("_", " ");
-    case MailTypes.tendering_enquiry:
-      return MailTypes.tendering_enquiry.replace("_", " ");
+    case "General enquiry":
+      return MailTypes.general_enquiry;
+    case "Job enquiry":
+      return MailTypes.job_enquiry;
+    case "Press contact":
+      return MailTypes.press_contact;
+    case "Tendering enquiry":
+      return MailTypes.tendering_enquiry;
+    default:
+      return MailTypes.general_enquiry;
   }
+};
+
+export const getSubtitleFromTypes = (types: Types[]) => {
+  const getType = (type: Types) => {
+    switch (type) {
+      case Types.architectures:
+        return "Architecture";
+      case Types.services:
+        return "Service";
+      case Types.design:
+        return "Design";
+      default:
+        return "";
+    }
+  };
+  let s = "";
+  types.map((t, index) => {
+    if (index !== 0) {
+      s = s + `\\`;
+    }
+    s = s + getType(t);
+  });
+  return s;
 };

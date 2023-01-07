@@ -6,6 +6,7 @@ import { Divider, Grid } from "@mui/material";
 import Card from "../../components/atoms/Card/card.atom";
 import CustomTypography from "../../components/atoms/CustomTypography/customTypography";
 import HeaderImageComponent from "../../components/atoms/HeaderImageComponent/headerImageComponent";
+import { Image } from "../../schemas";
 
 const HomePage = () => {
   const { img_thumbnail, categories, styles, t, handleNavigation } =
@@ -33,23 +34,28 @@ const HomePage = () => {
     };
     return (
       <Grid container rowSpacing={0}>
-        {categories.map((homeData, index) => (
-          <Grid
-            key={index}
-            item
-            xs={12}
-            md={4}
-            style={styles.gridItem}
-            onClick={() => onNavigateElementClick(getPath(index))}
-          >
-            <Card
-              id={index}
-              title={homeData.name}
-              image={homeData.img}
-              alt={homeData.img.image_alt}
-            />
-          </Grid>
-        ))}
+        {categories.map(
+          (
+            homeData: { name: string | undefined; img: Image },
+            index: number
+          ) => (
+            <Grid
+              key={index}
+              item
+              xs={12}
+              md={4}
+              style={styles.gridItem}
+              onClick={() => onNavigateElementClick(getPath(index))}
+            >
+              <Card
+                id={index}
+                title={homeData.name}
+                image={homeData.img}
+                alt={homeData.img.image_alt}
+              />
+            </Grid>
+          )
+        )}
       </Grid>
     );
   }, [categories, onNavigateElementClick, styles.gridItem]);

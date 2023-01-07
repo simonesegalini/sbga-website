@@ -6,6 +6,7 @@ export const usePersonStyle = (): Style => {
   const theme = useTheme();
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
+  const isMediumLarge = screenSize === "lg" || screenSize === "md";
 
   return {
     detailContainer: {
@@ -44,18 +45,18 @@ export const usePersonStyle = (): Style => {
     },
     txt: {
       color: theme.palette.primary.dark,
-      fontSize: isSmall ? "1.4rem" : "1.5rem",
+      fontSize: isMediumLarge ? "1rem" : isSmall ? "1.2rem" : "1.5rem",
       lineHeight: 1.2,
     },
     txtRole: {
       color: theme.palette.primary.dark,
-      fontSize: isSmall ? "1.2rem" : "1.3rem",
+      fontSize: isMediumLarge ? "0.8rem" : isSmall ? "1rem" : "1rem",
       lineHeight: 1.2,
     },
     txtBio: {
       color: theme.palette.primary.dark,
       lineHeight: 1.2,
-      fontSize: isSmall ? "0.9rem" : "1rem",
+      fontSize: isMediumLarge ? "0.7rem" : isSmall ? "1.1rem" : "1rem",
     },
   };
 };

@@ -5,7 +5,7 @@ import { Types } from "../../../schemas";
 
 export const useArchitecturesPageLogic = (): IUseArchitecturesPage => {
   const { data } = useGlobal();
-  const { image, rows } = data.data[0][Types.architectures];
+  const { image, rows } = data![Types.architectures];
   const styles = useArchitecturesPageStyle();
 
   return {

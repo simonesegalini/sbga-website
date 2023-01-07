@@ -18,7 +18,7 @@ const variants: Variants = {
 
 const usePersonComponent = (props: IPerson) => {
   const { person, index, setCloseDetail, setOpenDetail } = props;
-  const { bio, role, name, surname, img_thumbnail, open, isBoss } = person;
+  const { bio, role, name, surname, image_thumbnail, open, isBoss } = person;
   const styles = usePersonStyle();
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
@@ -58,18 +58,18 @@ const usePersonComponent = (props: IPerson) => {
   const Image = useMemo(() => {
     return (
       <ImageWithLoader
-        src={img_thumbnail.image}
-        alt={img_thumbnail.image_alt}
-        x_position={img_thumbnail.x_position}
-        y_position={img_thumbnail.y_position}
+        src={image_thumbnail.image}
+        alt={image_thumbnail.image_alt}
+        x_position={image_thumbnail.x_position}
+        y_position={image_thumbnail.y_position}
         imgContainerStyle={styles.img}
       />
     );
   }, [
-    img_thumbnail.image,
-    img_thumbnail.image_alt,
-    img_thumbnail.x_position,
-    img_thumbnail.y_position,
+    image_thumbnail.image,
+    image_thumbnail.image_alt,
+    image_thumbnail.x_position,
+    image_thumbnail.y_position,
     styles.img,
   ]);
 

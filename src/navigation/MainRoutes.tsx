@@ -22,6 +22,11 @@ const MainRoutes = () => {
           element={<PortfolioPage key={Paths.Portfolio} />}
         />
         <Route
+          key={Paths.PortfolioDetail}
+          path={Paths.PortfolioDetail}
+          element={<DetailPage key={Paths.PortfolioDetail} />}
+        />
+        <Route
           key={Paths.About}
           path={Paths.About}
           element={<AboutPage key={Paths.About} />}

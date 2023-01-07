@@ -49,12 +49,14 @@ export const useMobileNavigatorStyle = (theme: Theme): Style => {
     },
     address: {
       color: theme.palette.primary.contrastText,
+      paddingLeft: 24,
     },
     logoContainer: {
       flex: 1,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+      cursor: "pointer",
     },
     logo: {
       maxWidth: "160px",

@@ -30,7 +30,7 @@ const Footer = () => {
           <img
             alt="logo"
             src={"imgs/logo.png"}
-            style={{ width: 300 }}
+            style={{ width: isSmall ? 200 : 300 }}
             onClick={onLogoClick}
           />
         </Box>

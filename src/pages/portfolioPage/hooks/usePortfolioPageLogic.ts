@@ -5,7 +5,7 @@ import { Types } from "../../../schemas";
 
 export const usePortfolioPageLogic = (): IUsePortfolioPage => {
   const { data } = useGlobal();
-  const { image, rows } = data.data[0][Types.architectures];
+  const { image, rows } = data![Types.portfolio];
   const styles = usePortfolioPageStyle();
 
   return {

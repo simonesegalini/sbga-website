@@ -37,7 +37,7 @@ export const useNavigationBarStyle = (open: boolean): Style => {
       zIndex: 10,
       maxHeight: "100%",
     },
-    logo: { position: "absolute", left: 32, width: 300 },
-    mobileLogo: { display: "none" },
+    logo: { position: "absolute", left: 32, width: 300, cursor: "pointer" },
+    mobileLogo: { display: "none", cursor: "pointer" },
   };
 };

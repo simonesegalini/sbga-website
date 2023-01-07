@@ -9,7 +9,7 @@ export const useHomePageLogic = () => {
   const { data: reducerData } = useGlobal();
   const { navigate } = useNavigation();
   const { t } = useTranslation();
-  const { home } = reducerData;
+  const { home } = reducerData!;
 
   const { img_thumbnail, categories } = home[0];
 

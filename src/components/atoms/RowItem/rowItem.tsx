@@ -8,18 +8,30 @@ import { getBasePathFromType } from "../../../utils";
 import { Paths } from "../../../navigation/types";
 import { useNavigation } from "../../../navigation/useNavigation";
 
-const RowItem = (props: Item) => {
-  const { color_bcg, img_header, isSmall, variants, title, subtitle, styles } =
-    useRowItem(props);
+export interface IRowItem {
+  item: Item;
+  boxed: boolean;
+}
+
+const RowItem = (props: IRowItem) => {
+  const {
+    background_color,
+    img_header,
+    isSmall,
+    variants,
+    title,
+    subtitle,
+    styles,
+  } = useRowItem(props);
   const { navigate } = useNavigation();
 
   const openItemDetail = useCallback(() => {
-    const basePaths = getBasePathFromType(props.type);
+    const basePaths = getBasePathFromType(props.item.type);
     if (basePaths === Paths.Home) {
       navigate(Paths.Home);
       return;
     }
-    navigate(getBasePathFromType(props.type) + "/" + props.id);
+    navigate(getBasePathFromType(props.item.type) + "/" + props.item.id);
   }, [navigate, props]);
 
   const RowOverlayComponent = () => {
@@ -53,12 +65,19 @@ const RowItem = (props: Item) => {
         id={img_header.id}
         image={img_header}
         title={title}
-        bcg_color={color_bcg}
+        bcg_color={props.boxed ? background_color : undefined}
         CustomOverlayComponent={RowOverlayComponent}
         onItemClick={openItemDetail}
       />
     );
-  }, [RowOverlayComponent, color_bcg, img_header, openItemDetail, title]);
+  }, [
+    RowOverlayComponent,
+    background_color,
+    img_header,
+    openItemDetail,
+    props.boxed,
+    title,
+  ]);
 
   const SmallItem = useMemo(() => {
     return (

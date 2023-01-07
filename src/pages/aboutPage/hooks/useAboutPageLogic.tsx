@@ -10,7 +10,7 @@ import { Paths } from "../../../navigation/types";
 
 export const useAboutPageLogic = (): IUseAboutPage => {
   const { data } = useGlobal();
-  const { about } = data.data[0];
+  const { about } = data!;
   const { image_top, image_bottom, rows } = about;
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";

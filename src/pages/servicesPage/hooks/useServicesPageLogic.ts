@@ -5,7 +5,7 @@ import { Types } from "../../../schemas";
 
 export const useServicesPageLogic = (): IUseServicesPage => {
   const { data } = useGlobal();
-  const { image, rows } = data.data[0][Types.services];
+  const { image, rows } = data![Types.services];
   const styles = useServicesPageStyle();
 
   return {

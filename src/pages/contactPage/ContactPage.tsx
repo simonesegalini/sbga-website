@@ -9,7 +9,8 @@ import Box from "@mui/material/Box";
 
 const ContactPage = () => {
   const { data } = useGlobal();
-  const { mail_types } = data.settings[0];
+
+  const { mail_types } = data!.settings;
   const styles = useContactPageStyle();
 
   return (

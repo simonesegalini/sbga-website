@@ -56,7 +56,11 @@ const Card: React.FC<ICard> = (props) => {
         }}
       >
         {bcg_color ? (
-          <img src={image.image} alt={image.image_alt} style={styles.img} />
+          <img
+            src={"http://93.42.250.155:8000" + image.image}
+            alt={image.image_alt}
+            style={styles.img}
+          />
         ) : (
           <ImageWithLoader
             src={image.image}

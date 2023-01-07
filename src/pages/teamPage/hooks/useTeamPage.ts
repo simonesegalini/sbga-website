@@ -6,7 +6,7 @@ import { TeamPerson } from "../../../components/molecules/teamComponent/types";
 
 export const useTeamPage = (): IUseTeamPage => {
   const { data } = useGlobal();
-  const { team } = data.data[0];
+  const { team } = data!;
   const { image, rows } = team;
   const styles = useTeamPageStyle();
 

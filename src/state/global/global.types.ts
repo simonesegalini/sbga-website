@@ -5,13 +5,13 @@ import {
   SET_LANDING_PAGE_IMAGES,
   SET_LANGUAGE,
 } from "./global.constants";
-import { DataSchema } from "../../schemas";
+import { Data } from "../../schemas";
 
 export type Language = "it" | "en";
 
 //**STATE**//
 export type GlobalState = {
-  data: DataSchema;
+  data: Data | undefined;
   finishedScrolling: boolean;
   hideLandingPage: boolean;
   isDataLoaded: boolean;
@@ -29,7 +29,7 @@ export interface SetLanguage {
 }
 
 export interface SetData {
-  data: DataSchema;
+  data: Data;
 }
 
 export type ActionsMap = {

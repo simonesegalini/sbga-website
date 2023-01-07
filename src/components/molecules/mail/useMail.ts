@@ -97,7 +97,6 @@ const useMail = (props: IEmail) => {
   });
 
   useEffect(() => {
-    console.log("ERROR -> ", postError);
     if (postMail && postMail.success) {
       setScreen("success");
       return;

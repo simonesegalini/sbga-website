@@ -5,6 +5,7 @@ import { Style } from "../../../globalTypes";
 export const useHeaderImageComponentStyle = (): Style => {
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
+  const isLargeXl = screenSize === "lg" || screenSize === "xl";
 
   const getFontSize = () => {
     switch (screenSize) {
@@ -13,7 +14,7 @@ export const useHeaderImageComponentStyle = (): Style => {
       case "sm":
         return "4em";
       case "xl":
-        return "10em";
+        return "8em";
       default:
         return "6em";
     }
@@ -22,17 +23,15 @@ export const useHeaderImageComponentStyle = (): Style => {
   const getFontSizeSubtitle = () => {
     switch (screenSize) {
       case "xs":
-        return "2em";
       case "sm":
-        return "2em";
+        return "1.5em";
       case "md":
-        return "3em";
-      case "lg":
-        return "3em";
-      case "xl":
-        return "3em";
-      default:
         return "2em";
+      case "lg":
+      case "xl":
+        return "2.5em";
+      default:
+        return "1.5em";
     }
   };
 
@@ -54,13 +53,13 @@ export const useHeaderImageComponentStyle = (): Style => {
       width: "100%",
       height: "100%",
     },
-    imgLogo: { position: "absolute", width: logoWidth },
+    imgLogo: { position: "absolute", width: logoWidth, cursor: "pointer" },
     containerTitle: {
       position: "absolute",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: 24,
+      padding: isLargeXl ? 40 : 24,
     },
     title: {
       fontSize: getFontSize(),

@@ -3,7 +3,7 @@ import { useGlobal } from "../../../state/global/useGlobal";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useGetPath } from "../../../hooks/useGetPath";
-import { getTypeFromBasePath } from "../../../utils";
+import { getSubtitleFromTypes, getTypeFromBasePath } from "../../../utils";
 import { Paths } from "../../../navigation/types";
 import HeaderImageComponent from "../../../components/atoms/HeaderImageComponent/headerImageComponent";
 import { Grid } from "@mui/material";
@@ -36,7 +36,7 @@ export const useDetailPageLogic = () => {
       const {
         img_header,
         title,
-        subtitle,
+        types,
         date,
         status,
         client,
@@ -49,7 +49,7 @@ export const useDetailPageLogic = () => {
             image={img_header}
             showLogo={false}
             title={title}
-            subtitle={subtitle}
+            subtitle={getSubtitleFromTypes(types)}
           />
           <Grid container style={styles.gridContainer}>
             <Grid item xs={12} md={3} style={styles.contentContainer}>
@@ -96,11 +96,13 @@ export const useDetailPageLogic = () => {
       return;
     }
     const type = getTypeFromBasePath(path);
+
     if (!type) {
       goHomeRef.current = true;
       return;
     }
-    const { rows } = data.data[0][type];
+    const { rows } = data![type];
+
     let item: Item | undefined = undefined;
     rows.forEach((row) => {
       row.items.forEach((i) => {
@@ -114,7 +116,7 @@ export const useDetailPageLogic = () => {
       return;
     }
     return renderComponent(item);
-  }, [data.data, id, path, renderComponent]);
+  }, [data, id, path, renderComponent]);
 
   return {
     DetailPage,

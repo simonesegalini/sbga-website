@@ -4,6 +4,7 @@ import CustomTypography from "../../CustomTypography/customTypography";
 interface ITextComponentProps {
   text: string;
 }
+
 const TextComponent = (props: ITextComponentProps) => {
   const { text } = props;
   const styles = useAboutItemStyle();
@@ -14,7 +15,9 @@ const TextComponent = (props: ITextComponentProps) => {
         ...styles.textContainer,
       }}
     >
-      <CustomTypography style={styles.text}>{text}</CustomTypography>
+      <CustomTypography style={styles.text} fontWeight={"light"}>
+        {text}
+      </CustomTypography>
     </div>
   );
 };

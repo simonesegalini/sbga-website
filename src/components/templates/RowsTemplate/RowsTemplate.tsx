@@ -17,7 +17,7 @@ const RowsTemplate = (props: RowsPropsType) => {
     return (
       <Grid container style={styles.grid}>
         {row.items.map((item: any, index: any) => (
-          <RowItem key={index} {...item} />
+          <RowItem key={index} item={item} boxed={row.boxed} />
         ))}
       </Grid>
     );
