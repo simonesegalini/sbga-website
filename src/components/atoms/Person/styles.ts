@@ -5,7 +5,8 @@ import { useTheme } from "@mui/material/styles";
 export const usePersonStyle = (): Style => {
   const theme = useTheme();
   const { screenSize } = useDimensions();
-  const isSmall = screenSize === "sm" || screenSize === "xs";
+  const isXs = screenSize === "xs"
+  const isSmall = screenSize === "sm";
   const isMediumLarge = screenSize === "lg" || screenSize === "md";
 
   return {
@@ -19,15 +20,15 @@ export const usePersonStyle = (): Style => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      height: isSmall ? "80vh" : "60vh",
-      maxHeight: isSmall ? "80vh" : "60vh",
+      height: isSmall || isXs ? "80vh" : "60vh",
+      maxHeight: isSmall || isXs ? "80vh" : "60vh",
       position: "relative",
     },
     imgContainer: {
       display: "flex",
       justifyContent: "center",
       height: "100%",
-      width: isSmall ? "100%" : "80%",
+      width: isSmall || isXs ? "100%" : "80%",
     },
     img: { height: "100%", width: "100%" },
     descriptionContainer: {
@@ -41,22 +42,22 @@ export const usePersonStyle = (): Style => {
       width: isSmall ? "100%" : "80%",
     },
     descriptionGridContainer: {
-      width: isSmall ? "100%" : "80%",
+      width: isSmall || isXs ? "100%" : "80%",
     },
     txt: {
       color: theme.palette.primary.dark,
-      fontSize: isMediumLarge ? "1rem" : isSmall ? "1.2rem" : "1.5rem",
+      fontSize: isMediumLarge ? "1rem" : isSmall || isXs ? "1.2rem" : "1.5rem",
       lineHeight: 1.2,
     },
     txtRole: {
       color: theme.palette.primary.dark,
-      fontSize: isMediumLarge ? "0.8rem" : isSmall ? "1rem" : "1rem",
+      fontSize: isMediumLarge ? "0.8rem" : isSmall || isXs ? "1rem" : "1rem",
       lineHeight: 1.2,
     },
     txtBio: {
       color: theme.palette.primary.dark,
       lineHeight: 1.2,
-      fontSize: isMediumLarge ? "0.7rem" : isSmall ? "0.9rem" : "1rem",
+      fontSize: isMediumLarge ? "0.85rem" : isSmall || isXs ? "0.9rem" : "1rem",
     },
   };
 };
