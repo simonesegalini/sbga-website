@@ -41,7 +41,7 @@ const FocusedImageComponent = (props: FocusedImageProps) => {
   return (
     <img
       {...otherProps}
-      src={"http://93.42.250.155:8000" + src}
+      src={src}
       ref={imageRef}
       style={style}
       onLoad={onLoadImage}
