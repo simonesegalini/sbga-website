@@ -8,7 +8,6 @@ import { useAllDataLoader } from "./hooks/useAllDataLoader";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import { useGlobal } from "./state/global/useGlobal";
 import LandingPage from "./pages/landingPage/LandingPage";
-import ScrollToTop from "./components/scrollToTop/ScrollToTop";
 
 const App = () => {
   usePageTitle(); //** THIS HOOK MANAGES TABS TITLE **//
@@ -22,9 +21,9 @@ const App = () => {
         {error ? (
           <ErrorPage />
         ) : (
-          <ScrollToTop showRoutes={isDataLoaded}>
+          <>
             {isDataLoaded ? <MainRoutes key="mainRoutes" /> : <LandingPage />}
-          </ScrollToTop>
+          </>
         )}
         {isDataLoaded && !error && <Footer key="footer" />}
       </>

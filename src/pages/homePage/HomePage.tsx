@@ -1,12 +1,12 @@
-import React, { useCallback, useMemo } from "react";
-import { useHomePageLogic } from "./hooks/useHomePageLogic";
+import React, {useCallback, useMemo} from "react";
+import {useHomePageLogic} from "./hooks/useHomePageLogic";
 import AnimatedPage from "../../components/templates/AnimatedPage";
-import { Paths } from "../../navigation/types";
-import { Divider, Grid } from "@mui/material";
+import {Paths} from "../../navigation/types";
+import {Divider, Grid} from "@mui/material";
 import Card from "../../components/atoms/Card/card.atom";
 import CustomTypography from "../../components/atoms/CustomTypography/customTypography";
 import HeaderImageComponent from "../../components/atoms/HeaderImageComponent/headerImageComponent";
-import { Image } from "../../schemas";
+import {Image} from "../../schemas";
 
 const HomePage = () => {
   const { img_thumbnail, categories, styles, t, handleNavigation } =

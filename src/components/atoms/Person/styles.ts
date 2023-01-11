@@ -56,7 +56,7 @@ export const usePersonStyle = (): Style => {
     txtBio: {
       color: theme.palette.primary.dark,
       lineHeight: 1.2,
-      fontSize: isMediumLarge ? "0.7rem" : isSmall ? "1.1rem" : "1rem",
+      fontSize: isMediumLarge ? "0.7rem" : isSmall ? "0.9rem" : "1rem",
     },
   };
 };

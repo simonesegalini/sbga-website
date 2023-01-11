@@ -44,6 +44,7 @@ export const useNavigationBar = () => {
   }, [open]);
 
   const handleClickMenu = useCallback(() => {
+    document.body.style.overflow = !open ? "hidden" : "visible";
     setOpen(!open);
   }, [open]);
 

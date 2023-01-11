@@ -9,9 +9,8 @@ interface IScrollToTop {
 const ScrollToTop = (props: IScrollToTop) => {
   const { children, showRoutes } = props;
   const location = useLocation();
-
   useLayoutEffect(() => {
-    document.documentElement.scrollTo(0, 0);
+    document.documentElement.scrollTo(0,0);
   }, [location.pathname, showRoutes]);
   return children;
 };

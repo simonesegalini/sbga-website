@@ -6,10 +6,10 @@ import Box from "@mui/material/Box";
 import useTeamComponent from "./useTeamComponent";
 
 const TeamComponent = (props: ITeamComponent) => {
-  const { teamData, setOpenDetail, setCloseDetail } = useTeamComponent(props);
+  const { padding,teamData, setOpenDetail, setCloseDetail } = useTeamComponent(props);
 
   return (
-    <Box component="div" p={8} style={{ width: "100%", position: "relative" }}>
+    <Box component="div" p={padding} style={{ width: "100%", position: "relative" }}>
       <Grid container spacing={3} rowSpacing={8}>
         {teamData.map((person, index) => (
           <React.Fragment key={index}>

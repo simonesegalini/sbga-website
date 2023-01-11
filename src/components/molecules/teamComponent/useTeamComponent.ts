@@ -9,6 +9,13 @@ const useTeamComponent = (props: ITeamComponent) => {
   const isSmall = screenSize === "sm" || screenSize === "xs";
   const [index, setIndexOpen] = useState<number | null>(null);
 
+  const padding = useMemo( () => {
+    if(isSmall) {
+      return 6
+    }
+    return 8
+  }, [isSmall])
+
   const teamData = useMemo((): TeamPerson[] => {
     if (isSmall) {
       return team;
@@ -41,7 +48,9 @@ const useTeamComponent = (props: ITeamComponent) => {
     [teamData]
   );
 
+
   return {
+    padding,
     teamData,
     setOpenDetail,
     setCloseDetail,
