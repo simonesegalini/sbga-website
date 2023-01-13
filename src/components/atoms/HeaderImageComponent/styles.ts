@@ -10,7 +10,7 @@ export const useHeaderImageComponentStyle = (): Style => {
   const getFontSize = () => {
     switch (screenSize) {
       case "xs":
-        return "3.5em";
+        return "2.5em";
       case "sm":
         return "4em";
       case "xl":

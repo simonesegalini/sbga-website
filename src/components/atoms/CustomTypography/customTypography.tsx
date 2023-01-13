@@ -19,9 +19,9 @@ const CustomTypography = (props: ICustomTypography) => {
       fontWeight={fontWeight}
       style={{
         color: defaultColor,
-        ...style,
         fontStyle: "HelveticaNeue",
         lineHeight: 1.3,
+          ...style,
       }}
       component={component ? component : "div"}
     />

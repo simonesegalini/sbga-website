@@ -30,7 +30,7 @@ export const useHomePageLogic = () => {
     if(reachedBottom && !isReached.current) {
       isReached.current = true;
       window.scrollTo(0, 0)
-      handleNavigation(Paths.Portfolio)
+      //handleNavigation(Paths.Portfolio)
     }
   }, [handleNavigation, reachedBottom])
 

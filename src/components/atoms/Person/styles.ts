@@ -47,7 +47,7 @@ export const usePersonStyle = (): Style => {
     txt: {
       color: theme.palette.primary.dark,
       fontSize: isMediumLarge ? "1rem" : isSmall || isXs ? "1.2rem" : "1.5rem",
-      lineHeight: 1.2,
+      lineHeight: 1.5,
     },
     txtRole: {
       color: theme.palette.primary.dark,
