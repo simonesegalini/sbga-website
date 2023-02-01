@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
 import MainRoutes from "./navigation/MainRoutes";
 import NavigationBar from "./components/molecules/navigationBar/NavigationBar";
@@ -8,14 +8,17 @@ import { useAllDataLoader } from "./hooks/useAllDataLoader";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import { useGlobal } from "./state/global/useGlobal";
 import LandingPage from "./pages/landingPage/LandingPage";
+import { useDimensions } from "./hooks/useDimensions";
 
 const App = () => {
   usePageTitle(); //** THIS HOOK MANAGES TABS TITLE **//
   const { error } = useAllDataLoader(); //** THIS HOOK MANAGES ALL DATA LOADING **//
   const { isDataLoaded } = useGlobal();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
-  return (
-    <AnimatePresence exitBeforeEnter>
+  const AppComponent = useMemo(() => {
+    return (
       <>
         {isDataLoaded && !error && <NavigationBar key="navbar" />}
         {error ? (
@@ -27,7 +30,17 @@ const App = () => {
         )}
         {isDataLoaded && !error && <Footer key="footer" />}
       </>
-    </AnimatePresence>
+    );
+  }, [error, isDataLoaded]);
+
+  return (
+    <>
+      {isSmall ? (
+        AppComponent
+      ) : (
+        <AnimatePresence exitBeforeEnter>{AppComponent}</AnimatePresence>
+      )}
+    </>
   );
 };
 

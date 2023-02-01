@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
-import React, {ReactElement, UIEventHandler, useEffect, useLayoutEffect} from "react";
+import React, {
+  ReactElement,
+  UIEventHandler,
+  useEffect,
+  useLayoutEffect,
+} from "react";
+import { useDimensions } from "../../hooks/useDimensions";
 
 interface IAnimatedPageProps {
   children: ReactElement;
@@ -18,14 +24,31 @@ const AnimatedPage: React.FC<IAnimatedPageProps> = ({
   style,
   onScroll,
 }) => {
-  useEffect( () => {
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
+
+  useEffect(() => {
     return () => {
       document.body.style.overflow = "visible";
     };
-  },[])
+  }, []);
   useLayoutEffect(() => {
-    window.scrollTo(0,0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (isSmall) {
+    return (
+      <div
+        style={style}
+        id="noAnimatedPage"
+        onScroll={onScroll}
+        key={children.key}
+      >
+        {children}
+      </div>
+    );
+  }
+
   return (
     <motion.div
       variants={animations}
