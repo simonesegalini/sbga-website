@@ -30,15 +30,9 @@ const ImageWithLoader = (props: IImage) => {
 
   const Image = useMemo(() => {
     return (
-      <div
-        className={"img"}
-        style={{
-          width: loading ? "1%" : "100%",
-          height: loading ? "1%" : "100%",
-        }}
-      >
+      <div className={"img"}>
         <FocusedImage
-          src={src}
+          src={"http://195.231.76.117:8000" + src}
           alt={alt}
           style={{ display: loading ? "none" : "block" }}
           x={x_position}
