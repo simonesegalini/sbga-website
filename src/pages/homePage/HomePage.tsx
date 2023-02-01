@@ -103,8 +103,8 @@ const HomePage = () => {
       <>
         <HeaderImageComponent image={img_thumbnail} />
         {MainComponent}
-        <PortfolioMainComponent removeHeader={true} />
         <BottomComponent />
+        <PortfolioMainComponent removeHeader={true} />
         <Divider style={styles.divider} />
       </>
     </AnimatedPage>
