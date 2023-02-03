@@ -32,7 +32,7 @@ const ImageWithLoader = (props: IImage) => {
     return (
       <div className={"img"}>
         <FocusedImage
-          src={"http://195.231.76.117:8000" + src}
+          src={src}
           alt={alt}
           style={{ display: loading ? "none" : "block" }}
           x={x_position}
