@@ -4,14 +4,9 @@ import { Paths } from "../../navigation/types";
 import CustomTypography from "../../components/atoms/CustomTypography/customTypography";
 import Mail from "../../components/molecules/mail/Mail";
 import { useParams } from "react-router-dom";
-import { MailType } from "../../schemas";
-
-type MailPageParams = {
-  type: MailType;
-};
 
 const MailPage = () => {
-  const { type } = useParams<MailPageParams>();
+  const { type } = useParams();
   const { styles, showContactLabel, t, title, hideContact } = useMailPage({
     type,
   });
@@ -31,7 +26,7 @@ const MailPage = () => {
                 </CustomTypography>
               </>
             )}
-            {type ? <Mail type={type} onSuccess={hideContact} /> : <></>}
+            {type ? <Mail mail_id={type} onSuccess={hideContact} /> : <></>}
           </div>
         </div>
       </>

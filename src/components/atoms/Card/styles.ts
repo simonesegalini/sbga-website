@@ -6,6 +6,7 @@ export const useCardStyle = (bcg_color?: string): Style => {
   const theme = useTheme();
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
+  const isMedium = screenSize === "md";
   return {
     overlayText: {
       height: "100%",
@@ -19,12 +20,12 @@ export const useCardStyle = (bcg_color?: string): Style => {
       alignItems: "center",
     },
     overlayTitle: {
-      width: isSmall ? "85%" : "70%",
+      width: isSmall ? "85%" : "80%",
       flex: 1,
       display: "flex",
       alignItems: "flex-end",
-      overflow: "hidden",
-      padding: isSmall ? 24 : 40,
+      //overflow: "hidden",
+      padding: isSmall ? 24 : 32,
     },
     bcgSmall: {
       padding: 0,
@@ -50,6 +51,7 @@ export const useCardStyle = (bcg_color?: string): Style => {
     },
     title: {
       color: theme.palette.primary.contrastText,
+      fontSize: isMedium ? "2.2rem" : "2.8rem",
       letterSpacing: "0.05em",
     },
     cardContainer: {
@@ -71,7 +73,7 @@ export const useCardStyle = (bcg_color?: string): Style => {
       paddingRight: isSmall && bcg_color ? 48 : bcg_color ? 48 : undefined,
       height: bcg_color ? (isSmall ? "80%" : "70%") : "100%",
       width: "100%",
-      objectFit: "cover"
+      objectFit: "cover",
     },
   };
 };

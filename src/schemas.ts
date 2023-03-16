@@ -68,6 +68,7 @@ export enum MailTypes {
 export type MailType = `${MailTypes}`;
 
 export interface Mail {
+  id: number;
   title: MailType;
   description: string;
 }

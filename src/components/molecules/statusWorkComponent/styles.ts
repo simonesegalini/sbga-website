@@ -7,7 +7,7 @@ export const useStatusWorkComponentStyle = (): Style => {
     txt: {
       color: theme.palette.primary.dark,
       lineHeight: 1.2,
-      fontSize: "0.8rem",
+      fontSize: "1rem",
     },
   };
 };

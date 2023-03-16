@@ -7,47 +7,34 @@ import { useEffect, useState } from "react";
 import useAxios from "axios-hooks";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { makeApiUrl } from "../../../hooks/useAllDataLoader";
-import { MailType } from "../../../schemas";
 
 type MailScreen = "data" | "loading" | "error" | "success";
 
 interface IBodyPost {
-  subject: string;
+  id_contact: string;
+  name: string;
   emailAddress: string;
   message: string;
+  token: string;
 }
 
 export interface IEmail {
+  mail_id: string;
   onSuccess?: () => void;
-  type: MailType;
 }
 
 const createBodyPost = (data: IBodyPost): FormData => {
   const bodyFormData = new FormData();
-  bodyFormData.append("subject", data.subject);
+  bodyFormData.append("id_contact", data.id_contact);
+  bodyFormData.append("name", data.name);
   bodyFormData.append("message", data.message);
-  bodyFormData.append("emailAddress", data.emailAddress);
-  bodyFormData.append("debugEmail", "simonesegalini10@gmail.com");
+  bodyFormData.append("email_address", data.emailAddress);
+  bodyFormData.append("token", data.token);
   return bodyFormData;
 };
 
-const getPathFromEmailType = (type: MailType) => {
-  switch (type) {
-    case "general_enquiry":
-      return "/general/";
-    case "tendering_enquiry":
-      return "/ten/";
-    case "job_enquiry":
-      return "/job/";
-    case "press_contact":
-      return "/press/";
-    default:
-      return "";
-  }
-};
-
 const useMail = (props: IEmail) => {
-  const { type } = props;
+  const { mail_id } = props;
   const theme = useTheme();
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
@@ -60,7 +47,7 @@ const useMail = (props: IEmail) => {
     postMailExecute,
   ] = useAxios(
     {
-      url: makeApiUrl(getPathFromEmailType(type)),
+      url: makeApiUrl("/sendMail/"),
       headers: {
         accept: "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -88,9 +75,11 @@ const useMail = (props: IEmail) => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       const body = createBodyPost({
-        subject: values.name,
+        id_contact: mail_id,
+        name: values.name,
         emailAddress: values.email,
         message: values.message,
+        token: "5dOX3BwoJ@eK6sqr7J@5",
       });
       postMailExecute({ data: body });
     },

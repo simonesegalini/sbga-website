@@ -6,7 +6,6 @@ import SuccessScreen from "./content/SuccessScreen";
 const Email = (props: IEmail) => {
   const { screen, styles, ...others } = useMail(props);
   const { onSuccess } = props;
-  const { loading } = others;
 
   const Screen = useMemo(() => {
     if (screen === "success") {
@@ -14,7 +13,7 @@ const Email = (props: IEmail) => {
       return <SuccessScreen />;
     }
     return <DataScreen {...others} />;
-  }, [loading, others, screen]);
+  }, [onSuccess, others, screen]);
 
   return <div style={styles.mailContent}>{Screen}</div>;
 };

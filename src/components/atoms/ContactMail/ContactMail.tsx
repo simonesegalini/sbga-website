@@ -3,7 +3,6 @@ import CustomTypography from "../CustomTypography/customTypography";
 import { useContactMailStyle } from "./styles";
 import CustomButton from "../Button/CustomButton";
 import Box from "@mui/material/Box";
-import { fromEmailNameToEmailRoute } from "../../../utils";
 import { useCallback } from "react";
 import { useNavigation } from "../../../navigation/useNavigation";
 
@@ -17,8 +16,8 @@ const ContactMail = (props: IContactMail) => {
   const { navigate } = useNavigation();
 
   const goToMailPage = useCallback(() => {
-    navigate(`/contact/mail/${fromEmailNameToEmailRoute(mail.title)}`);
-  }, [mail.title, navigate]);
+    navigate(`/contact/mail/${mail.id}`);
+  }, [mail.id, navigate]);
 
   return (
     <div style={styles.container}>
