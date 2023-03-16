@@ -60,6 +60,7 @@ export const useHeaderImageComponentStyle = (): Style => {
       flexDirection: "column",
       alignItems: "center",
       padding: isLargeXl ? 40 : 24,
+      backgroundColor: "rgba(0, 0, 0, 0.25)",
     },
     title: {
       fontSize: getFontSize(),

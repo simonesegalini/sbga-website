@@ -37,23 +37,25 @@ const RowItem = (props: IRowItem) => {
   const RowOverlayComponent = () => {
     return (
       <div style={styles.overlayContainer}>
-        <div style={styles.typoContainer}>
-          <CustomTypography
-            variant={variants.variantTitle}
-            fontWeight="bold"
-            align="right"
-          >
-            {title}
-          </CustomTypography>
-        </div>
-        <div style={styles.typoContainer}>
-          <CustomTypography
-            variant={variants.variantSubtitle}
-            fontWeight="light"
-            align="right"
-          >
-            {subtitle}
-          </CustomTypography>
+        <div style={styles.ctr}>
+          <div style={styles.typoContainer}>
+            <CustomTypography
+              variant={variants.variantTitle}
+              fontWeight="bold"
+              align="right"
+            >
+              {title}
+            </CustomTypography>
+          </div>
+          <div style={styles.typoContainer}>
+            <CustomTypography
+              variant={variants.variantSubtitle}
+              fontWeight="light"
+              align="right"
+            >
+              {subtitle}
+            </CustomTypography>
+          </div>
         </div>
       </div>
     );

@@ -28,11 +28,16 @@ export const useRowItemStyle = (color_bcg: string | undefined): Style => {
       opacity: 1,
       transition: ".5s ease",
       cursor: "pointer",
+      alignItems: "flex-end",
+    },
+    ctr: {
+      backgroundColor: "rgba(0, 0, 0, 0.25)",
+      padding: 8,
+      width: "fit-content",
     },
     typoContainer: {
       display: "flex",
       justifyContent: "flex-end",
-      marginTop: -8,
     },
   };
 };
