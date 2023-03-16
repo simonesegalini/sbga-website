@@ -4,6 +4,7 @@ import { useHeaderImageComponentStyle } from "./styles";
 import { Image } from "../../../schemas";
 import ImageWithLoader from "../Image/Image";
 import CustomTypography from "../CustomTypography/customTypography";
+import { useGlobal } from "../../../state/global/useGlobal";
 
 interface IHeaderImageComponent {
   image: Image;
@@ -14,7 +15,11 @@ interface IHeaderImageComponent {
 
 const HeaderImageComponent = (props: IHeaderImageComponent) => {
   const { image, showLogo = true, title, subtitle } = props;
-  const styles = useHeaderImageComponentStyle();
+  const styles = useHeaderImageComponentStyle(showLogo);
+  const { data } = useGlobal();
+  const { settings } = data!;
+  const { logo } = settings;
+
   return (
     <div style={styles.container}>
       <ImageWithLoader
@@ -25,7 +30,7 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
         y_position={image.y_position}
       />
       {showLogo && (
-        <img alt="logo" src={"imgs/logo.png"} style={styles.imgLogo} />
+        <img alt={logo.image_alt} src={logo.image} style={styles.imgLogo} />
       )}
       <div style={styles.containerTitle}>
         {title && (

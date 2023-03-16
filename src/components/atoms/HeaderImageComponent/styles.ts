@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useDimensions } from "../../../hooks/useDimensions";
 import { Style } from "../../../globalTypes";
 
-export const useHeaderImageComponentStyle = (): Style => {
+export const useHeaderImageComponentStyle = (showLogo: boolean): Style => {
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
   const isLargeXl = screenSize === "lg" || screenSize === "xl";
@@ -60,7 +60,7 @@ export const useHeaderImageComponentStyle = (): Style => {
       flexDirection: "column",
       alignItems: "center",
       padding: isLargeXl ? 40 : 24,
-      backgroundColor: "rgba(0, 0, 0, 0.25)",
+      backgroundColor: !showLogo ? "rgba(0, 0, 0, 0.25)" : "transparent",
     },
     title: {
       fontSize: getFontSize(),
