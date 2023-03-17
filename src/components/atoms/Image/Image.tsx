@@ -35,6 +35,7 @@ const ImageWithLoader = (props: IImage) => {
               display: loading ? "none" : "block",
               width: "100%",
               height: "100%",
+              objectFit: "cover",
             }}
             onLoad={onLoadImage}
           />
