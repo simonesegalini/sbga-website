@@ -15,7 +15,7 @@ interface IHeaderImageComponent {
 
 const HeaderImageComponent = (props: IHeaderImageComponent) => {
   const { image, showLogo = true, title, subtitle } = props;
-  const styles = useHeaderImageComponentStyle(showLogo);
+  const styles = useHeaderImageComponentStyle(!(showLogo || title || subtitle));
   const { data } = useGlobal();
   const { settings } = data!;
   const { logo } = settings;
