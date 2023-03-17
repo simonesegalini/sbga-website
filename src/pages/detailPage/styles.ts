@@ -28,7 +28,7 @@ export const useDetailPageStyle = (): Style => {
       fontSize: isSmall ? "1rem" : "1.1rem",
     },
     img: {
-      height: isSmall ? "40vh" : "60vh",
+      height: "auto" ,
       width: "100%",
     },
   };
