@@ -11,14 +11,10 @@ interface IImage {
   imgContainerStyle?: CSSProperties;
 }
 
+const Base_P = 0.00000000000001;
+
 const ImageWithLoader = (props: IImage) => {
-  const {
-    src,
-    alt,
-    x_position = 0.000000000000001,
-    y_position = 0.00000000000001,
-    imgContainerStyle,
-  } = props;
+  const { src, alt, x_position, y_position, imgContainerStyle } = props;
   const [loading, setLoading] = useState(true);
 
   const onLoadImage = useCallback(() => {
@@ -31,14 +27,27 @@ const ImageWithLoader = (props: IImage) => {
   const Image = useMemo(() => {
     return (
       <div className={"img"}>
-        <FocusedImage
-          src={src}
-          alt={alt}
-          style={{ display: loading ? "none" : "block" }}
-          x={x_position}
-          y={y_position}
-          onLoadImage={onLoadImage}
-        />
+        {!x_position && !y_position ? (
+          <img
+            src={src}
+            alt={alt}
+            style={{
+              display: loading ? "none" : "block",
+              width: "100%",
+              height: "100%",
+            }}
+            onLoad={onLoadImage}
+          />
+        ) : (
+          <FocusedImage
+            src={src}
+            alt={alt}
+            style={{ display: loading ? "none" : "block" }}
+            x={x_position ? x_position : Base_P}
+            y={y_position ? y_position : Base_P}
+            onLoadImage={onLoadImage}
+          />
+        )}
       </div>
     );
   }, [alt, loading, onLoadImage, src, x_position, y_position]);
