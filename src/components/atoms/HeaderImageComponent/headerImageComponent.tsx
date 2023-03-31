@@ -1,5 +1,5 @@
 import ScrollHelper from "../ScrollHelper/ScrollHelper";
-import React from "react";
+import React, { useMemo } from "react";
 import { useHeaderImageComponentStyle } from "./styles";
 import { Image } from "../../../schemas";
 import ImageWithLoader from "../Image/Image";
@@ -19,6 +19,9 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
   const { data } = useGlobal();
   const { settings } = data!;
   const { logo } = settings;
+  const showText = useMemo(() => {
+    return title || subtitle;
+  }, [title, subtitle]);
 
   return (
     <div style={styles.container}>
@@ -30,20 +33,27 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
         y_position={image.y_position}
       />
       {showLogo && (
-        <img alt={logo.image_alt} src={logo.image} style={styles.imgLogo} />
+        <img
+          alt={logo.image_alt}
+          src={"imgs/logo.png"}
+          style={styles.imgLogo}
+        />
       )}
-      <div style={styles.containerTitle}>
-        {title && (
-          <CustomTypography style={styles.title} fontWeight={"bold"}>
-            {title}
-          </CustomTypography>
-        )}
-        {subtitle && (
-          <CustomTypography style={styles.subtitle} fontWeight={"light"}>
-            {subtitle}
-          </CustomTypography>
-        )}
-      </div>
+      {showText && (
+        <div style={styles.containerTitle}>
+          {title && (
+            <CustomTypography style={styles.title} fontWeight={"bold"}>
+              {title}
+            </CustomTypography>
+          )}
+          {subtitle && (
+            <CustomTypography style={styles.subtitle} fontWeight={"light"}>
+              {subtitle}
+            </CustomTypography>
+          )}
+        </div>
+      )}
+
       <ScrollHelper />
     </div>
   );
