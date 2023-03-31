@@ -25,10 +25,10 @@ export const useDetailPageStyle = (): Style => {
       marginTop: 24,
       color: theme.palette.primary.dark,
       lineHeight: 1.1,
-      fontSize: isSmall ? "1rem" : "1.1rem",
+      fontSize: isSmall ? "1rem" : "1.2rem",
     },
     img: {
-      height: "auto" ,
+      height: "auto",
       width: "100%",
     },
   };
