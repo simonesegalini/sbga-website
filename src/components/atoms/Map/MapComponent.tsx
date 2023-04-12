@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import "./style.css";
 import L from "leaflet";
 
-const defaultCenter: LatLngExpression = [45.4754162, 9.1534269];
+const defaultCenter: LatLngExpression = [45.45353138165518, 9.164999857718554];
 const defaultZoom = 16;
 
 export const blackIcon = new L.Icon({
