@@ -6,7 +6,7 @@ import usePersonComponent from "./usePersonComponent";
 export interface IPerson {
   person: TeamPerson;
   index: number;
-  setOpenDetail: (index: number) => void;
+  setOpenDetail: (index: number, person: TeamPerson) => void;
   setCloseDetail: (index: number) => void;
 }
 

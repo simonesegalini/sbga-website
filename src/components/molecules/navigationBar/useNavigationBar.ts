@@ -22,6 +22,10 @@ export const useNavigationBar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "visible";
+  }, [open]);
+
   const buttons = useMemo(() => {
     return getNavbarButtons().filter((btn) => btn.name !== "Home");
   }, []);
@@ -44,7 +48,6 @@ export const useNavigationBar = () => {
   }, [open]);
 
   const handleClickMenu = useCallback(() => {
-    document.body.style.overflow = !open ? "hidden" : "visible";
     setOpen(!open);
   }, [open]);
 

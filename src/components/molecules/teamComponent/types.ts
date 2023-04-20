@@ -7,3 +7,8 @@ export interface TeamPerson extends Person {
 export interface ITeamComponent {
   team: TeamPerson[];
 }
+
+export interface TeamComponentState {
+  index: null | number;
+  person: null | TeamPerson;
+}

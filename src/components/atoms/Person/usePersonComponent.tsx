@@ -33,15 +33,12 @@ const usePersonComponent = (props: IPerson) => {
   }, [index, isSmall, setCloseDetail]);
 
   const onProfileCardClick = useCallback(() => {
-    if (!person.isBoss) {
-      return;
-    }
     if (isSmall) {
       setImOpen(true);
       return;
     }
-    setOpenDetail(index);
-  }, [index, isSmall, person.isBoss, setOpenDetail]);
+    setOpenDetail(index, person);
+  }, [index, isSmall, person, setOpenDetail]);
 
   useEffect(() => {
     setImOpen(false);

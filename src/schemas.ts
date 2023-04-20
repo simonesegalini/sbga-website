@@ -39,6 +39,7 @@ export interface TeamRow {
 }
 
 export interface Person {
+  id: number;
   image_thumbnail: Image;
   name: string;
   surname: string;

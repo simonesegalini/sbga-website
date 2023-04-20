@@ -1,53 +1,71 @@
 import { useDimensions } from "../../../hooks/useDimensions";
-import { useCallback, useMemo, useState } from "react";
-import { ITeamComponent, TeamPerson } from "./types";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { ITeamComponent, TeamComponentState, TeamPerson } from "./types";
 import _ from "lodash";
+import { chunkArray } from "../../../utils";
+
+const initialState: TeamComponentState = { index: null, person: null };
 
 const useTeamComponent = (props: ITeamComponent) => {
   const { team } = props;
   const { screenSize } = useDimensions();
   const isSmall = screenSize === "sm" || screenSize === "xs";
-  const [index, setIndexOpen] = useState<number | null>(null);
+  const [state, setState] = useState(initialState);
 
-  const padding = useMemo( () => {
-    if(isSmall) {
-      return 6
+  useEffect(() => {
+    console.log("STATE -> ", state);
+  }, [state]);
+
+  const rows = useMemo(() => {
+    if (isSmall) {
+      return;
     }
-    return 8
-  }, [isSmall])
+    return chunkArray(team, 3);
+  }, [isSmall, team]);
+
+  const padding = useMemo(() => {
+    if (isSmall) {
+      return 6;
+    }
+    return 8;
+  }, [isSmall]);
 
   const teamData = useMemo((): TeamPerson[] => {
     if (isSmall) {
       return team;
     }
 
-    if (index === null) {
+    if (state.index === null) {
       return team.map((person) => ({
         ...person,
         open: false,
       }));
     }
-    const bossToRemove = team.filter((t, i) => t.isBoss && i !== index);
-    return _.difference(team, bossToRemove).map((person, i) => ({
-      ...person,
-      open: i === 0,
-    }));
-  }, [index, isSmall, team]);
-
-  const setCloseDetail = useCallback(() => {
-    setIndexOpen(null);
-  }, []);
-
-  const setOpenDetail = useCallback(
-    (index: number) => {
-      if (!teamData[index].isBoss) {
+    const rowWhereIsElement = Math.trunc(state.index / 3);
+    let idsToRemove: number[] = [];
+    rows?.forEach((row, i) => {
+      if (i !== rowWhereIsElement) {
         return;
       }
-      setIndexOpen(index);
-    },
-    [teamData]
-  );
+      idsToRemove = row
+        .filter((p) => p.id !== state.person?.id)
+        .map((p) => p.id);
+    });
 
+    const personsToRemove = team.filter((t) => idsToRemove.includes(t.id));
+    return _.difference(team, personsToRemove).map((person) => ({
+      ...person,
+      open: person.id === state.person?.id,
+    }));
+  }, [isSmall, rows, team, state]);
+
+  const setCloseDetail = useCallback(() => {
+    setState(initialState);
+  }, []);
+
+  const setOpenDetail = useCallback((index: number, person: TeamPerson) => {
+    setState({ index, person });
+  }, []);
 
   return {
     padding,

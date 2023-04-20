@@ -91,3 +91,14 @@ export const getSubtitleFromTypes = (types: Types[]) => {
   });
   return s;
 };
+
+export const chunkArray = <T>(arr: T[], chunk_size: number): T[][] => {
+  let index: number | undefined;
+  const arrayLength = arr.length;
+  const tempArray = [];
+  for (index = 0; index < arrayLength; index += chunk_size) {
+    const myChunk = arr.slice(index, index + chunk_size);
+    tempArray.push(myChunk);
+  }
+  return tempArray;
+};
