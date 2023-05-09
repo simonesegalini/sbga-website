@@ -5,32 +5,36 @@ import usePersonComponent from "./usePersonComponent";
 
 export interface IPerson {
   person: TeamPerson;
-  index: number;
-  setOpenDetail: (index: number, person: TeamPerson) => void;
-  setCloseDetail: (index: number) => void;
+  openDetailIndex: number | null;
+  setOpenDetail: (personId: number) => void;
+  setCloseDetail: () => void;
 }
 
 const PersonComponent = (props: IPerson) => {
   const {
-    isBoss,
     Detail,
     Image,
     gridItemDimension,
     styles,
-    openDetail,
+    imOpen,
+    otherElementInRowIsOpen,
     onProfileCardClick,
   } = usePersonComponent(props);
 
+  if (otherElementInRowIsOpen) {
+    return <></>;
+  }
+
   return (
     <Grid item xs={12} md={gridItemDimension} style={styles.gridItem}>
-      {openDetail ? (
+      {imOpen ? (
         <Detail />
       ) : (
         <div
           onClick={onProfileCardClick}
           style={{
             ...styles.imgContainer,
-            cursor: isBoss ? "pointer" : undefined,
+            cursor: "pointer",
           }}
         >
           {Image}

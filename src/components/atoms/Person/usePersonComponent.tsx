@@ -1,6 +1,5 @@
 import { IPerson } from "./Person";
-import { useDimensions } from "../../../hooks/useDimensions";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { usePersonStyle } from "./styles";
 import { motion, Variants } from "framer-motion";
 import { Grid } from "@mui/material";
@@ -17,40 +16,32 @@ const variants: Variants = {
 };
 
 const usePersonComponent = (props: IPerson) => {
-  const { person, index, setCloseDetail, setOpenDetail } = props;
-  const { bio, role, name, surname, image_thumbnail, open, isBoss } = person;
+  const { person, openDetailIndex, setCloseDetail, setOpenDetail } = props;
+  const { bio, role, name, surname, image_thumbnail } = person;
   const styles = usePersonStyle();
-  const { screenSize } = useDimensions();
-  const isSmall = screenSize === "sm" || screenSize === "xs";
-  const [imOpen, setImOpen] = useState(open);
+
+  const imOpen = useMemo(() => {
+    return openDetailIndex === person.id;
+  }, [openDetailIndex, person.id]);
+
+  const otherElementInRowIsOpen = useMemo(() => {
+    return openDetailIndex && openDetailIndex !== person.id;
+  }, [openDetailIndex, person.id]);
 
   const onDetailCardClick = useCallback(() => {
-    if (isSmall) {
-      setImOpen(false);
-      return;
-    }
-    setCloseDetail(index);
-  }, [index, isSmall, setCloseDetail]);
+    setCloseDetail();
+  }, [setCloseDetail]);
 
   const onProfileCardClick = useCallback(() => {
-    if (isSmall) {
-      setImOpen(true);
-      return;
-    }
-    setOpenDetail(index, person);
-  }, [index, isSmall, person, setOpenDetail]);
-
-  useEffect(() => {
-    setImOpen(false);
-  }, [isSmall]);
+    setOpenDetail(person.id);
+  }, [person, setOpenDetail]);
 
   const gridItemDimension = useMemo(() => {
-    return open ? 12 : 4;
-  }, [open]);
-
-  const openDetail = useMemo(() => {
-    return open || imOpen;
-  }, [imOpen, open]);
+    if (!openDetailIndex) {
+      return 4;
+    }
+    return imOpen ? 12 : 0;
+  }, [imOpen, openDetailIndex]);
 
   const Image = useMemo(() => {
     return (
@@ -124,7 +115,7 @@ const usePersonComponent = (props: IPerson) => {
     return (
       <motion.div
         variants={variants}
-        animate={openDetail ? "open" : "closed"}
+        animate={imOpen ? "open" : "closed"}
         style={styles.detailContainer}
         onClick={onDetailCardClick}
       >
@@ -141,13 +132,13 @@ const usePersonComponent = (props: IPerson) => {
   };
 
   return {
-    isBoss,
     Image,
     Detail,
-    openDetail,
+    imOpen,
     gridItemDimension,
     styles,
     onProfileCardClick,
+    otherElementInRowIsOpen: otherElementInRowIsOpen,
   };
 };
 
