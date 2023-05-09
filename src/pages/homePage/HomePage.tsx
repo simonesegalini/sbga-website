@@ -44,7 +44,7 @@ const HomePage = () => {
               key={index}
               item
               xs={12}
-              md={4}
+              md={6}
               style={styles.gridItem}
               onClick={() => onNavigateElementClick(getPath(index))}
             >
