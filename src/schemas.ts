@@ -16,6 +16,8 @@ export interface Item {
   subtitle: string;
   status: string;
   client: string;
+  seo_description: string;
+  seo_keywords: string;
   type: Types;
   types: Types[];
 }

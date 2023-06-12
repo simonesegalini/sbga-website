@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.img--effect-grayscaled {
+  filter: grayscale(100%);
+}
+
+.img--effect-sepia {
+  filter: sepia(100%);
+}
+
+.img--effect-saturated {
+  filter: saturate(50%);
+}
+
+.img--effect-blur {
+  filter: blur(2px);
+}
+

@@ -11,6 +11,7 @@ import TeamPage from "../pages/teamPage/TeamPage";
 import DetailPage from "../pages/detailPage/DetailPage";
 import ContactPage from "../pages/contactPage/ContactPage";
 import MailPage from "../pages/mailPage/MailPage";
+import HomePage2 from "../pages/homePage2/HomePage2";
 
 const MainRoutes = () => {
   const NavigationBarRoutes = useMemo(() => {
@@ -81,6 +82,16 @@ const MainRoutes = () => {
           key={Paths.Services}
           path={Paths.Services}
           element={<ServicesPage key={Paths.Services} />}
+        />
+        <Route
+          key={Paths.Services}
+          path={Paths.Services}
+          element={<ServicesPage key={Paths.Services} />}
+        />
+        <Route
+          key={Paths.Home2}
+          path={Paths.Home2}
+          element={<HomePage2 key={Paths.Home2} />}
         />
       </>
     );

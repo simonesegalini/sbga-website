@@ -1,5 +1,6 @@
 export enum Paths {
   Home = "/",
+  Home2 = "/2",
   Architecture = "/architecture",
   ArchitectureDetail = "/architecture/:id",
   Portfolio = "/portfolio",
