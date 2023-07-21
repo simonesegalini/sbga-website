@@ -7,7 +7,6 @@ import Card from "../../components/atoms/Card/card.atom";
 import CustomTypography from "../../components/atoms/CustomTypography/customTypography";
 import HeaderImageComponent from "../../components/atoms/HeaderImageComponent/headerImageComponent";
 import { Image } from "../../schemas";
-import PortfolioMainComponent from "../portfolioPage/PortfolioMainComponent";
 
 const HomePage = () => {
   const { img_thumbnail, categories, styles, t, handleNavigation } =
@@ -104,7 +103,10 @@ const HomePage = () => {
         <HeaderImageComponent image={img_thumbnail} />
         {MainComponent}
         <BottomComponent />
-        <PortfolioMainComponent removeHeader={true} />
+        {
+          //<PortfolioMainComponent removeHeader={true} />
+        }
+
         <Divider style={styles.divider} />
       </>
     </AnimatedPage>

@@ -1,10 +1,9 @@
 import { useHomePageStyle } from "../styles";
 import { useGlobal } from "../../../state/global/useGlobal";
 import { useNavigation } from "../../../navigation/useNavigation";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback } from "react";
 import { Paths } from "../../../navigation/types";
 import { useTranslation } from "react-i18next";
-import { usePageBottom } from "../../../hooks/usePageBottom";
 
 export const useHomePageLogic = () => {
   const { data: reducerData } = useGlobal();

@@ -36,7 +36,8 @@ export const useAboutItemStyle = (): Style => {
       display: "flex",
       justifyContent: "center",
       width: isSmall ? undefined : "60%",
-      fontSize: isSmall ? "1rem" : "1.2rem",
+      lineHeight: 1.4,
+      fontSize: isSmall ? "1.1rem" : "1.3rem",
     },
   };
 };

@@ -16,6 +16,7 @@ export interface Item {
   subtitle: string;
   status: string;
   client: string;
+  place: string;
   seo_description: string;
   seo_keywords: string;
   type: Types;

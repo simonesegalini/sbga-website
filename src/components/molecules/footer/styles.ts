@@ -29,10 +29,10 @@ export const useFooterStyle = (): Style => {
     containerLogo: {
       display: isSmall ? "flex" : "block",
       justifyContent: isSmall ? "center" : undefined,
-      cursor: "pointer",
     },
     address: {
-      fontSize: isSmall ? "1rem" : "1.2rem",
+      lineHeight: 1.4,
+      fontSize: isSmall ? "1.1rem" : "1.3rem",
       color: theme.palette.primary.contrastText,
       //fontWeight: "lighter",
       textAlign: isSmall ? "center" : undefined,

@@ -41,6 +41,7 @@ export const useDetailPageLogic = () => {
         status,
         client,
         images,
+        place,
         content,
       } = item;
       return (
@@ -57,6 +58,7 @@ export const useDetailPageLogic = () => {
                 date={date}
                 status={status}
                 client={client}
+                place={place}
               />
               <CustomTypography style={styles.contentTxt} fontWeight="light">
                 {content}
@@ -113,6 +115,7 @@ export const useDetailPageLogic = () => {
       goHomeRef.current = true;
       return;
     }
+    console.log("ITEM -> ", item);
     return renderComponent(item);
   }, [data, id, path, renderComponent]);
 

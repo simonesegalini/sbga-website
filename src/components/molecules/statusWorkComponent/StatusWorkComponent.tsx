@@ -6,10 +6,11 @@ interface IStatusWorkComoponent {
   date: string;
   status: string;
   client: string;
+  place: string;
 }
 
 const StatusWorkComponent = (props: IStatusWorkComoponent) => {
-  const { date, client, status } = props;
+  const { date, client, status, place } = props;
   const styles = useStatusWorkComponentStyle();
 
   const Line = useCallback(
@@ -31,9 +32,10 @@ const StatusWorkComponent = (props: IStatusWorkComoponent) => {
 
   return (
     <>
+      <div style={{ marginTop: 8 }}> {Line("LOCATION", place)}</div>
       {Line("DATE", date)}
-      {Line("STATUS", status)}
-      {Line("CLIENT", client)}
+      <div style={{ marginTop: 8 }}> {Line("STATUS", status)}</div>
+      <div style={{ marginTop: 8 }}> {Line("CLIENT", client)}</div>
     </>
   );
 };

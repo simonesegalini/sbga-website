@@ -1,10 +1,11 @@
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
-import { LatLngExpression } from "leaflet";
+import { LatLngTuple } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./style.css";
 import L from "leaflet";
+import { addressLatLngPosition } from "../../../utils";
+import { useCallback } from "react";
 
-const defaultCenter: LatLngExpression = [45.45353138165518, 9.164999857718554];
 const defaultZoom = 16;
 
 export const blackIcon = new L.Icon({
@@ -19,11 +20,19 @@ export const blackIcon = new L.Icon({
 });
 
 const MapComponent = () => {
+  const showInMapClicked = useCallback((addressLatLngPosition: LatLngTuple) => {
+    window.open(
+      "https://maps.google.com?q=" +
+        addressLatLngPosition[0] +
+        "," +
+        addressLatLngPosition[1]
+    );
+  }, []);
   return (
     <>
       <MapContainer
         style={{ width: "100%", height: "100%" }}
-        center={defaultCenter}
+        center={addressLatLngPosition}
         zoom={defaultZoom}
         scrollWheelZoom={false}
       >
@@ -31,7 +40,15 @@ const MapComponent = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={defaultCenter} icon={blackIcon} />
+        <Marker
+          position={addressLatLngPosition}
+          icon={blackIcon}
+          eventHandlers={{
+            click: () => {
+              showInMapClicked(addressLatLngPosition);
+            },
+          }}
+        />
       </MapContainer>
     </>
   );

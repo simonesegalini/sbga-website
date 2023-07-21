@@ -29,7 +29,7 @@ const ImageWithLoader = (props: IImage) => {
       <div className={"img"}>
         {!x_position && !y_position ? (
           <img
-            src={"http://195.231.76.117:8000" + src}
+            src={src}
             alt={alt}
             style={{
               display: loading ? "none" : "block",
@@ -40,8 +40,9 @@ const ImageWithLoader = (props: IImage) => {
             onLoad={onLoadImage}
           />
         ) : (
+          //TODO: Remove
           <FocusedImage
-            src={"http://195.231.76.117:8000" + src}
+            src={src}
             alt={alt}
             style={{ display: loading ? "none" : "block" }}
             x={x_position ? x_position : Base_P}

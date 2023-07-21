@@ -1,5 +1,6 @@
 import { MailTypes, Types } from "./schemas";
 import { Paths } from "./navigation/types";
+import { LatLngTuple } from "leaflet";
 
 export const consoleHelper = (message?: any, ...optionalParams: any[]) => {
   if (process.env.NODE_ENV === "production") return;
@@ -102,3 +103,7 @@ export const chunkArray = <T>(arr: T[], chunk_size: number): T[][] => {
   }
   return tempArray;
 };
+
+export const addressLatLngPosition: LatLngTuple = [
+  45.45353138165518, 9.164999857718554,
+];
