@@ -32,8 +32,8 @@ const StatusWorkComponent = (props: IStatusWorkComoponent) => {
 
   return (
     <>
-      <div style={{ marginTop: 8 }}> {Line("LOCATION", place)}</div>
-      {Line("DATE", date)}
+      {Line("LOCATION", place)}
+      <div style={{ marginTop: 8 }}> {Line("DATE", date)}</div>
       <div style={{ marginTop: 8 }}> {Line("STATUS", status)}</div>
       <div style={{ marginTop: 8 }}> {Line("CLIENT", client)}</div>
     </>
