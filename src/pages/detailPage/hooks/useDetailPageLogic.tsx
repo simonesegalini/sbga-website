@@ -12,6 +12,7 @@ import { useDetailPageStyle } from "../styles";
 import ImageWithLoader from "../../../components/atoms/Image/Image";
 import CustomTypography from "../../../components/atoms/CustomTypography/customTypography";
 import { useNavigation } from "../../../navigation/useNavigation";
+import { Helmet } from "react-helmet";
 
 type DetailPageParams = {
   id: string;
@@ -43,9 +44,17 @@ export const useDetailPageLogic = () => {
         images,
         place,
         content,
+        seo_description,
+        seo_keywords,
       } = item;
       return (
         <>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>{title}</title>
+            <meta name="description" content={seo_description} />
+            <meta name="keywords" content={seo_keywords} />
+          </Helmet>
           <HeaderImageComponent
             image={img_header}
             showLogo={false}
@@ -115,7 +124,6 @@ export const useDetailPageLogic = () => {
       goHomeRef.current = true;
       return;
     }
-    console.log("ITEM -> ", item);
     return renderComponent(item);
   }, [data, id, path, renderComponent]);
 
