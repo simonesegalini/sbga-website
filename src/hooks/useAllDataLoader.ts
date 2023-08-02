@@ -48,8 +48,8 @@ const fromDataSchemaToData = (dataSchema: DataSchema): Data => {
       })),
     },
     [Types.portfolio]: {
-      image: data[3][Types.portfolio].image,
-      rows: data[3][Types.portfolio].rows.map((row) => ({
+      image: data[4][Types.portfolio].image,
+      rows: data[4][Types.portfolio].rows.map((row) => ({
         ...row,
         items: row.items.map((r) => ({
           ...r,
@@ -57,10 +57,10 @@ const fromDataSchemaToData = (dataSchema: DataSchema): Data => {
         })),
       })),
     },
-    about: data[4].about,
-    team: data[5].team,
-    home: data[6].home,
-    settings: data[7].settings,
+    about: data[5].about,
+    team: data[6].team,
+    home: data[7].home,
+    settings: data[8].settings,
   };
 };
 

@@ -2,6 +2,7 @@ export enum Types {
   "architectures" = "architectures",
   "services" = "services",
   "design" = "design",
+  "news" = "news",
   "portfolio" = "portfolio",
 }
 
@@ -138,6 +139,12 @@ export type DataSchema = {
     },
     {
       [Types.services]: {
+        image: Image;
+        rows: Row[];
+      };
+    },
+    {
+      [Types.news]: {
         image: Image;
         rows: Row[];
       };
