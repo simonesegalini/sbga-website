@@ -10,12 +10,16 @@ export const useMenuItemStyle = (
 
   const getFontSize = () => {
     switch (screenSize) {
+      case "xs":
+        return "2.8em";
+      case "sm":
+        return "2.8em";
       case "lg":
-        return "5em";
-      case "xl":
-        return "7em";
-      default:
         return "4em";
+      case "xl":
+        return "4em";
+      default:
+        return "3em";
     }
   };
 
@@ -24,7 +28,7 @@ export const useMenuItemStyle = (
       fontSize: getFontSize(),
       color: theme.palette.primary.contrastText,
       fontWeight: "bold",
-      lineHeight: isSmall ? 1.1 : 1.3,
+      lineHeight: isSmall ? 1 : 1.3,
     },
     cursor: {
       cursor: "pointer",

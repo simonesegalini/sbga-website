@@ -3,6 +3,8 @@ import { Paths } from "../navigation/types";
 
 export enum Buttons {
   Home = "Home",
+  Architecture = "Architecture",
+  Design = "Design",
   Portfolio = "Portfolio",
   About = "About",
   Team = "Team",
@@ -15,10 +17,12 @@ export interface NavButton {
 }
 
 export const navButtons: NavButton[] = [
+  { name: Buttons.Architecture, path: Paths.Architecture },
   {
     name: Buttons.Home,
     path: Paths.Home,
   },
+  { name: Buttons.Design, path: Paths.Design },
   {
     name: Buttons.Portfolio,
     path: Paths.Portfolio,

@@ -28,16 +28,18 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
 
   return (
     <Box style={styles.container}>
-      <>
+      <Box style={styles.buttonContainer}>
         {buttons.map((button) => (
           <React.Fragment key={button.name.toString()}>
-            <MenuItem
-              title={button.name}
-              onClick={() => handleClickRoute(button)}
-            />
+            <Box style={{ marginTop: 16 }}>
+              <MenuItem
+                title={button.name}
+                onClick={() => handleClickRoute(button)}
+              />
+            </Box>
           </React.Fragment>
         ))}
-      </>
+      </Box>
       <Divider style={styles.divider} />
       <Box style={styles.bottomContainer}>
         <Box style={styles.socialBtnContainer}>

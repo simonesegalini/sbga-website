@@ -10,6 +10,13 @@ export const useMobileNavigatorStyle = (theme: Theme): Style => {
       overflowY: "auto",
       marginTop: 16,
       marginBottom: 16,
+      justifyContent: "flex-end",
+    },
+    buttonContainer: {
+      height: "100%",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
     },
     divider: {
       backgroundColor: theme.palette.primary.contrastText,

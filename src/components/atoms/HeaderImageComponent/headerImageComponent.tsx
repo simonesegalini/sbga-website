@@ -1,10 +1,12 @@
 import ScrollHelper from "../ScrollHelper/ScrollHelper";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useHeaderImageComponentStyle } from "./styles";
 import { Image } from "../../../schemas";
 import ImageWithLoader from "../Image/Image";
 import CustomTypography from "../CustomTypography/customTypography";
 import { useGlobal } from "../../../state/global/useGlobal";
+import { Paths } from "../../../navigation/types";
+import { useNavigation } from "../../../navigation/useNavigation";
 
 interface IHeaderImageComponent {
   image: Image;
@@ -17,11 +19,19 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
   const { image, showLogo = true, title, subtitle } = props;
   const styles = useHeaderImageComponentStyle(!(showLogo || title || subtitle));
   const { data } = useGlobal();
+  const { navigate } = useNavigation();
   const { settings } = data!;
   const { logo } = settings;
   const showText = useMemo(() => {
     return title || subtitle;
   }, [title, subtitle]);
+
+  const handleNavigation = useCallback(
+    (path: Paths) => {
+      navigate(path);
+    },
+    [navigate]
+  );
 
   return (
     <div style={styles.container}>
@@ -37,6 +47,9 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
           alt={logo.image_alt}
           src={"imgs/logo.png"}
           style={styles.imgLogo}
+          onClick={() => {
+            handleNavigation(Paths.About);
+          }}
         />
       )}
       {showText && (

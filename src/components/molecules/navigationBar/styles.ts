@@ -1,12 +1,15 @@
 import { Style } from "../../../globalTypes";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 export const useNavigationBarStyle = (open: boolean): Style => {
   const navbarHeight = document.getElementById("navbar-header")?.offsetHeight;
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   return {
     navbarHeaderContainer: {
       display: "flex",
-      padding: 32,
+      padding: isSmall ? 24 : 32,
       position: "fixed",
       justifyContent: "flex-end",
       zIndex: 10000,

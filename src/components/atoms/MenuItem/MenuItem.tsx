@@ -37,7 +37,7 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
       <Box
         style={{
           textAlign: "right",
-          margin: 8,
+          margin: 2,
         }}
         onClick={onClick}
         key={title}
