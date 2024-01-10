@@ -24,7 +24,7 @@ const AddressComponent = (props: AddressComponentProps) => {
       onClick={showInMapClicked}
     >
       {address}
-      <br /> {cap} {city} - {nation} <br /> VAT {vat}
+      <br /> {cap} {city} - {nation} <br /> VAT {vat} <br /> info@sbga.it
     </CustomTypography>
   );
 };
