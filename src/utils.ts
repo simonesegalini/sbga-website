@@ -1,4 +1,4 @@
-import { MailTypes, Types } from "./schemas";
+import { Item, MailTypes, Types } from "./schemas";
 import { Paths } from "./navigation/types";
 import { LatLngTuple } from "leaflet";
 
@@ -40,7 +40,7 @@ export const getBasePathFromType = (type: Types) => {
   }
 };
 
-export const getTypeFromBasePath = (path: Paths) => {
+export const getTypeFromBasePath = (path: string | undefined) => {
   switch (path) {
     case Paths.ArchitectureDetail:
       return Types.architectures;
@@ -102,6 +102,14 @@ export const chunkArray = <T>(arr: T[], chunk_size: number): T[][] => {
     tempArray.push(myChunk);
   }
   return tempArray;
+};
+
+export const getPathToNavigate = (props: Item) => {
+  const basePaths = getBasePathFromType(props.type);
+  if (basePaths === Paths.Home) {
+    return "/";
+  }
+  return getBasePathFromType(props.type) + "/" + props.id;
 };
 
 export const addressLatLngPosition: LatLngTuple = [

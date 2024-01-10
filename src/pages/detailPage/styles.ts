@@ -11,9 +11,9 @@ export const useDetailPageStyle = (): Style => {
       backgroundColor: "whitesmoke",
     },
     gridContainer: {
-      paddingTop: isSmall ? 0 : 80,
+      paddingTop: isSmall ? 20 : 80,
       paddingLeft: isSmall ? 0 : 80,
-      paddingBottom: isSmall ? 60 : 80,
+      paddingBottom: isSmall ? 0 : 80,
     },
     contentContainer: {
       padding: isSmall ? 24 : 0,
@@ -30,6 +30,13 @@ export const useDetailPageStyle = (): Style => {
     img: {
       height: "auto",
       width: "100%",
+    },
+    divider: {
+      backgroundColor: theme.palette.primary.contrastText,
+      opacity: "0.5",
+    },
+    buttonContainer: {
+      paddingTop: isSmall ? 0 : 80,
     },
   };
 };

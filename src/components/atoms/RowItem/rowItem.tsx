@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 import CustomTypography from "../CustomTypography/customTypography";
 import Card from "../Card/card.atom";
 import useRowItem from "./useRowItem";
-import { getBasePathFromType } from "../../../utils";
+import { getPathToNavigate } from "../../../utils";
 import { Paths } from "../../../navigation/types";
 import { useNavigation } from "../../../navigation/useNavigation";
 
@@ -26,12 +26,12 @@ const RowItem = (props: IRowItem) => {
   const { navigate } = useNavigation();
 
   const openItemDetail = useCallback(() => {
-    const basePaths = getBasePathFromType(props.item.type);
-    if (basePaths === Paths.Home) {
+    const path = getPathToNavigate(props.item);
+    if (path === Paths.Home) {
       navigate(Paths.Home);
       return;
     }
-    navigate(getBasePathFromType(props.item.type) + "/" + props.item.id);
+    navigate(path);
   }, [navigate, props]);
 
   const RowOverlayComponent = () => {

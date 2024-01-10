@@ -3,16 +3,22 @@ import { useGlobal } from "../../../state/global/useGlobal";
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useGetPath } from "../../../hooks/useGetPath";
-import { getSubtitleFromTypes, getTypeFromBasePath } from "../../../utils";
+import {
+  getPathToNavigate,
+  getSubtitleFromTypes,
+  getTypeFromBasePath,
+} from "../../../utils";
 import { Paths } from "../../../navigation/types";
 import HeaderImageComponent from "../../../components/atoms/HeaderImageComponent/headerImageComponent";
-import { Grid } from "@mui/material";
+import { Divider, Grid } from "@mui/material";
 import StatusWorkComponent from "../../../components/molecules/statusWorkComponent/StatusWorkComponent";
 import { useDetailPageStyle } from "../styles";
 import ImageWithLoader from "../../../components/atoms/Image/Image";
 import CustomTypography from "../../../components/atoms/CustomTypography/customTypography";
 import { useNavigation } from "../../../navigation/useNavigation";
 import { Helmet } from "react-helmet";
+import DetailPageButton from "../../../components/atoms/DetailPageButton/DetailPageButton";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 type DetailPageParams = {
   id: string;
@@ -25,6 +31,12 @@ export const useDetailPageLogic = () => {
   const path = useGetPath();
   const { navigate } = useNavigation();
   const styles = useDetailPageStyle();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "xs";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (goHomeRef.current) {
@@ -32,8 +44,72 @@ export const useDetailPageLogic = () => {
     }
   }, [navigate]);
 
-  const renderComponent = useCallback(
+  const openNewDetail = useCallback(
     (item: Item) => {
+      const path = getPathToNavigate(item);
+      if (path === Paths.Home) {
+        navigate(Paths.Home);
+        return;
+      }
+      navigate(path);
+    },
+    [navigate]
+  );
+
+  const renderButtons = useCallback(
+    (prevItem: Item | undefined, nextItem: Item | undefined) => {
+      return (
+        <>
+          <Grid item xs={12} sm={6} style={styles.contentContainer}>
+            {prevItem && (
+              <DetailPageButton
+                label={"Previous"}
+                title={prevItem.title}
+                types={prevItem.types}
+                onClick={() => openNewDetail(prevItem)}
+              />
+            )}
+          </Grid>
+          {prevItem && nextItem && isSmall && (
+            <Grid item xs={12} sm={0}>
+              <Divider style={styles.divider} variant={"inset"} />
+            </Grid>
+          )}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            style={{
+              ...styles.contentContainer,
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            {nextItem && (
+              <DetailPageButton
+                label={"Next"}
+                title={nextItem.title}
+                types={nextItem.types}
+                style={{ direction: "rtl" }}
+                onClick={() => openNewDetail(nextItem)}
+              />
+            )}
+          </Grid>
+        </>
+      );
+    },
+    [isSmall, openNewDetail, styles.contentContainer, styles.divider]
+  );
+
+  const renderComponent = useCallback(
+    (items: {
+      prevItem: Item | undefined;
+      item: Item | undefined;
+      nextItem: Item | undefined;
+    }) => {
+      if (!items.item) {
+        return <></>;
+      }
       const {
         img_header,
         title,
@@ -46,7 +122,7 @@ export const useDetailPageLogic = () => {
         content,
         seo_description,
         seo_keywords,
-      } = item;
+      } = items.item;
       return (
         <>
           <Helmet>
@@ -87,11 +163,16 @@ export const useDetailPageLogic = () => {
                 </React.Fragment>
               ))}
             </Grid>
+            <Grid container style={styles.buttonContainer}>
+              {renderButtons(items.prevItem, items.nextItem)}
+            </Grid>
           </Grid>
         </>
       );
     },
     [
+      renderButtons,
+      styles.buttonContainer,
       styles.contentContainer,
       styles.contentTxt,
       styles.gridContainer,
@@ -99,33 +180,62 @@ export const useDetailPageLogic = () => {
     ]
   );
 
+  const items:
+    | {
+        prevItem: Item | undefined;
+        item: Item | undefined;
+        nextItem: Item | undefined;
+      }
+    | undefined = useMemo(() => {
+    const type = getTypeFromBasePath(path);
+    if (!type) {
+      return;
+    }
+    const { rows } = data![type];
+
+    let prevItem: Item | undefined = undefined;
+    let item: Item | undefined = undefined;
+    let nextItem: Item | undefined = undefined;
+
+    rows.forEach((row, rowIndex) => {
+      row.items.forEach((i, itemIndex) => {
+        if (i.id.toString() === id) {
+          //***OTTENGO L'ELEMENTO PRIMA***//
+          if (itemIndex === 0 && rowIndex !== 0) {
+            prevItem = rows[rowIndex - 1].items.at(-1);
+          } else {
+            prevItem = row.items[itemIndex - 1];
+          }
+
+          //***OTTENGO L'ELEMENTO SUCCESSIVO***//
+          if (
+            itemIndex === row.items.length - 1 &&
+            rowIndex !== rows.length - 1
+          ) {
+            nextItem = rows[rowIndex + 1].items[0];
+          } else {
+            nextItem = row.items[itemIndex + 1];
+          }
+
+          item = i;
+        }
+      });
+    });
+    return { prevItem, item, nextItem };
+  }, [data, id, path]);
+
   const DetailPage = useMemo(() => {
     if (!path) {
       goHomeRef.current = true;
       return;
     }
-    const type = getTypeFromBasePath(path);
 
-    if (!type) {
+    if (!items || !items.item) {
       goHomeRef.current = true;
       return;
     }
-    const { rows } = data![type];
-
-    let item: Item | undefined = undefined;
-    rows.forEach((row) => {
-      row.items.forEach((i) => {
-        if (i.id.toString() === id) {
-          item = i;
-        }
-      });
-    });
-    if (!item) {
-      goHomeRef.current = true;
-      return;
-    }
-    return renderComponent(item);
-  }, [data, id, path, renderComponent]);
+    return renderComponent(items);
+  }, [items, path, renderComponent]);
 
   return {
     DetailPage,
