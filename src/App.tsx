@@ -9,6 +9,7 @@ import ErrorPage from "./pages/errorPage/ErrorPage";
 import { useGlobal } from "./state/global/useGlobal";
 import LandingPage from "./pages/landingPage/LandingPage";
 import { useDimensions } from "./hooks/useDimensions";
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
 
 const App = () => {
   usePageTitle(); //** THIS HOOK MANAGES TABS TITLE **//
@@ -20,6 +21,7 @@ const App = () => {
   const AppComponent = useMemo(() => {
     return (
       <>
+        <ScrollToTop />
         {isDataLoaded && !error && <NavigationBar key="navbar" />}
         {error ? (
           <ErrorPage />
