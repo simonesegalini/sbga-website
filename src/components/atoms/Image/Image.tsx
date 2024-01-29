@@ -29,7 +29,7 @@ const ImageWithLoader = (props: IImage) => {
       <div className={"img"}>
         {!x_position && !y_position ? (
           <img
-            src={src}
+            src={"https://www.sbga.it" + src}
             alt={alt}
             style={{
               display: loading ? "none" : "block",
@@ -42,7 +42,7 @@ const ImageWithLoader = (props: IImage) => {
         ) : (
           //TODO: Remove
           <FocusedImage
-            src={src}
+            src={"https://www.sbga.it" + src}
             alt={alt}
             style={{ display: loading ? "none" : "block" }}
             x={x_position ? x_position : Base_P}
