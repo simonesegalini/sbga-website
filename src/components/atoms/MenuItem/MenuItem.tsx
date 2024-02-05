@@ -23,6 +23,9 @@ const MenuItem: React.FC<MenuItemsProps> = ({ title, onClick }) => {
         style={{
           textAlign: "center",
           cursor: "pointer",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
         }}
         onClick={onClick}
         key={title}

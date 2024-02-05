@@ -30,7 +30,7 @@ export const useNavigationBarStyle = (open: boolean): Style => {
       flexDirection: "column",
       marginTop: open ? (navbarHeight ? navbarHeight - 48 : 0) : 0,
       bottom: 0,
-      maxHeight: "100%",
+      height: "100vh",
       justifyContent: "center",
     },
     container: {
@@ -38,7 +38,7 @@ export const useNavigationBarStyle = (open: boolean): Style => {
       flexDirection: "column",
       width: "100%",
       zIndex: 10,
-      maxHeight: "100%",
+      height: "100vh",
     },
     logo: { position: "absolute", left: 32, width: 300, cursor: "pointer" },
     mobileLogo: { display: "none", cursor: "pointer" },

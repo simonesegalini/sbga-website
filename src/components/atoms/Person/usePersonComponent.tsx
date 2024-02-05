@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
 import CustomTypography from "../CustomTypography/customTypography";
 import ImageWithLoader from "../Image/Image";
+import { useDimensions } from "../../../hooks/useDimensions";
 
 const variants: Variants = {
   open: {
@@ -19,6 +20,8 @@ const usePersonComponent = (props: IPerson) => {
   const { person, openDetailIndex, setCloseDetail, setOpenDetail } = props;
   const { bio, role, name, surname, image_thumbnail } = person;
   const styles = usePersonStyle();
+  const { screenSize } = useDimensions();
+  const isSmall = screenSize === "sm" || screenSize === "xs";
 
   const imOpen = useMemo(() => {
     return openDetailIndex === person.id;
@@ -123,9 +126,11 @@ const usePersonComponent = (props: IPerson) => {
           <Grid item xs={12} md={4} style={styles.descriptionContainer}>
             {Description}
           </Grid>
-          <Grid item xs={0} md={4} style={styles.gridItem}>
-            <div style={styles.imgContainer}>{Image}</div>
-          </Grid>
+          {!isSmall && (
+            <Grid item xs={0} md={4} style={styles.gridItem}>
+              <div style={styles.imgContainer}>{Image}</div>
+            </Grid>
+          )}
         </Grid>
       </motion.div>
     );

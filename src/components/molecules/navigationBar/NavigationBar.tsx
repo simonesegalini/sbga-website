@@ -4,7 +4,6 @@ import { useNavigationBar } from "./useNavigationBar";
 import MButton from "../../atoms/MenuButton/MButton";
 import MobileNavigator from "./MobileNavigator/MobileNavigator";
 import WebNavigator from "./WebNavigator/WebNavigator";
-import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import useContainerDimensions from "../../../hooks/useContainerDimensions/useContainerDimensions";
@@ -21,8 +20,8 @@ const NavigationBar: React.FC = () => {
     handleClickMenu,
     handleClickRoute,
     goToHome,
+    colorButton,
   } = useNavigationBar();
-  const theme = useTheme();
 
   const NavBarHeader = () => {
     return (
@@ -43,7 +42,7 @@ const NavigationBar: React.FC = () => {
             isOpen={open}
             onClick={handleClickMenu}
             strokeWidth="1.5"
-            color={theme.palette.primary.contrastText}
+            color={colorButton}
             transition={{ type: "spring", stiffness: 260, damping: 20 }}
             width="32"
             height="24"

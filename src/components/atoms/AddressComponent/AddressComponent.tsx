@@ -18,14 +18,26 @@ const AddressComponent = (props: AddressComponentProps) => {
     );
   }, []);
 
+  const openEmail = useCallback(() => {
+    window.open("mailto:info@sbga.it");
+  }, []);
+
   return (
-    <CustomTypography
-      style={{ ...style, cursor: "pointer" }}
-      onClick={showInMapClicked}
-    >
-      {address}
-      <br /> {cap} {city} - {nation} <br /> VAT {vat} <br /> info@sbga.it
-    </CustomTypography>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <CustomTypography
+        style={{ ...style, cursor: "pointer" }}
+        onClick={showInMapClicked}
+      >
+        {address}
+        <br /> {cap} {city} - {nation} <br /> VAT {vat}
+      </CustomTypography>
+      <CustomTypography
+        style={{ ...style, cursor: "pointer" }}
+        onClick={openEmail}
+      >
+        <br /> info@sbga.it
+      </CustomTypography>
+    </div>
   );
 };
 

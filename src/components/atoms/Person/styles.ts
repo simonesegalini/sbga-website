@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 export const usePersonStyle = (): Style => {
   const theme = useTheme();
   const { screenSize } = useDimensions();
-  const isXs = screenSize === "xs"
+  const isXs = screenSize === "xs";
   const isSmall = screenSize === "sm";
   const isMediumLarge = screenSize === "lg" || screenSize === "md";
 
@@ -40,6 +40,7 @@ export const usePersonStyle = (): Style => {
       flexDirection: "column",
       height: "100%",
       width: isSmall ? "100%" : "80%",
+      overflow: "auto",
     },
     descriptionGridContainer: {
       width: isSmall || isXs ? "100%" : "80%",

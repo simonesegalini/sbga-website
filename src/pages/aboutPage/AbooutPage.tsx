@@ -14,7 +14,11 @@ const AboutPage = () => {
   return (
     <AnimatedPage key={Paths.About}>
       <div style={styles.container}>
-        <HeaderImageComponent image={imageTop} showLogo={false} />
+        <HeaderImageComponent
+          image={imageTop}
+          showLogo={false}
+          coverImage={false}
+        />
         <RowsTemplate type="aboutRow" rows={rows} />
         <div style={styles.bottomContainer} onClick={onTeamClick}>
           <Card

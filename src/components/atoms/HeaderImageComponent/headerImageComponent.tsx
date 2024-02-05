@@ -13,10 +13,11 @@ interface IHeaderImageComponent {
   showLogo?: boolean;
   title?: string;
   subtitle?: string;
+  coverImage?: boolean;
 }
 
 const HeaderImageComponent = (props: IHeaderImageComponent) => {
-  const { image, showLogo = true, title, subtitle } = props;
+  const { image, showLogo = true, title, subtitle, coverImage } = props;
   const styles = useHeaderImageComponentStyle(!(showLogo || title || subtitle));
   const { data } = useGlobal();
   const { navigate } = useNavigation();
@@ -41,6 +42,7 @@ const HeaderImageComponent = (props: IHeaderImageComponent) => {
         imgContainerStyle={styles.imgBcg}
         x_position={image.x_position}
         y_position={image.y_position}
+        coverImage={coverImage}
       />
       {showLogo && (
         <img

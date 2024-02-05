@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { useDimensions } from "../../../hooks/useDimensions";
@@ -41,10 +40,6 @@ const SocialButtons = () => {
 
   return (
     <>
-      <FacebookIcon
-        style={{ ...styles.icon, marginRight: 8 }}
-        onClick={() => openSocial("facebook")}
-      />
       <InstagramIcon
         style={{ ...styles.icon, marginRight: 8 }}
         onClick={() => openSocial("instagram")}

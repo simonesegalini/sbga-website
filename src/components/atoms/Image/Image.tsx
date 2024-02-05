@@ -9,12 +9,20 @@ interface IImage {
   x_position?: number;
   y_position?: number;
   imgContainerStyle?: CSSProperties;
+  coverImage?: boolean;
 }
 
 const Base_P = 0.00000000000001;
 
 const ImageWithLoader = (props: IImage) => {
-  const { src, alt, x_position, y_position, imgContainerStyle } = props;
+  const {
+    src,
+    alt,
+    x_position,
+    y_position,
+    imgContainerStyle,
+    coverImage = true,
+  } = props;
   const [loading, setLoading] = useState(true);
 
   const onLoadImage = useCallback(() => {
@@ -35,7 +43,7 @@ const ImageWithLoader = (props: IImage) => {
               display: loading ? "none" : "block",
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              objectFit: coverImage ? "cover" : undefined,
             }}
             onLoad={onLoadImage}
           />
@@ -52,7 +60,7 @@ const ImageWithLoader = (props: IImage) => {
         )}
       </div>
     );
-  }, [alt, loading, onLoadImage, src, x_position, y_position]);
+  }, [alt, coverImage, loading, onLoadImage, src, x_position, y_position]);
 
   return (
     <div style={{ ...imgContainerStyle }}>

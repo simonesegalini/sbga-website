@@ -8,6 +8,7 @@ import { useTheme } from "@mui/material/styles";
 import SocialButtons from "../../../atoms/SocialButtons/SocialButtons";
 import AddressComponent from "../../../atoms/AddressComponent/AddressComponent";
 import { Paths } from "../../../../navigation/types";
+import { useEffect, useState } from "react";
 
 interface MobileNavigatorProps {
   buttons: NavButton[];
@@ -18,6 +19,12 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
   const { buttons, handleClickRoute } = props;
   const theme = useTheme();
   const styles = useMobileNavigatorStyle(theme);
+  const [height, setHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const btnHeight = document.getElementById("btn-ct")?.offsetHeight;
+    setHeight(btnHeight);
+  }, []);
 
   const onLogoClick = () => {
     handleClickRoute({
@@ -28,10 +35,17 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
 
   return (
     <Box style={styles.container}>
-      <Box style={styles.buttonContainer}>
+      <Box id={"btn-ct"} style={styles.buttonContainer}>
         {buttons.map((button) => (
           <React.Fragment key={button.name.toString()}>
-            <Box style={{ marginTop: 16 }}>
+            <Box
+              style={{
+                height: height ? height / (buttons.length + 1) : undefined,
+                //marginTop: 16,
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <MenuItem
                 title={button.name}
                 onClick={() => handleClickRoute(button)}
@@ -40,22 +54,24 @@ const MobileNavigator = (props: MobileNavigatorProps) => {
           </React.Fragment>
         ))}
       </Box>
-      <Divider style={styles.divider} />
-      <Box style={styles.bottomContainer}>
-        <Box style={styles.socialBtnContainer}>
-          <SocialButtons />
-        </Box>
-        <Box style={styles.infoContainer}>
-          <Box style={styles.addressContainer}>
-            <AddressComponent style={styles.address} />
+      <Box style={{ height: "fit-content" }}>
+        <Divider style={styles.divider} />
+        <Box style={styles.bottomContainer}>
+          <Box style={styles.socialBtnContainer}>
+            <SocialButtons />
           </Box>
-          <Box style={styles.logoContainer}>
-            <img
-              src={"imgs/logo.png"}
-              style={styles.logo}
-              onClick={onLogoClick}
-              alt="logo"
-            />
+          <Box style={styles.infoContainer}>
+            <Box style={styles.addressContainer}>
+              <AddressComponent style={styles.address} />
+            </Box>
+            <Box style={styles.logoContainer}>
+              <img
+                src={"imgs/logo.png"}
+                style={styles.logo}
+                onClick={onLogoClick}
+                alt="logo"
+              />
+            </Box>
           </Box>
         </Box>
       </Box>
